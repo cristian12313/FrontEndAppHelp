@@ -1,0 +1,20 @@
+h2 {
+  color: blue;
+  text-align: center;
+  font-family: 'Roboto', sans-serif; /* O el tipo de letra que prefieras */
+  font-size: 50px; /* Tamaño de la fuente */
+}
+
+nav {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+
+nav a {
+  color: blue; /* Cambia esto al color que prefieras */
+  text-decoration: none; /* Quita el subrayado por defecto */
+  font-family: 'Roboto', sans-serif; /* Puedes cambiar la fuente si lo necesitas */
+  font-size: 20px; /* Ajusta el tamaño de la fuente */
+  padding: 10px;
+}
