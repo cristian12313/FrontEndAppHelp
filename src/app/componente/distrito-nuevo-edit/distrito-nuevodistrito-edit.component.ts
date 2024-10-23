@@ -79,7 +79,7 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
     if(this.distritoForm.valid){
       const distrito:Distrito = new Distrito();
       distrito.idDistrito = this.id;
-      distrito.nombre = this.distritoForm.value.nombre;
+      distrito.nombre = this.distritoForm.value.nombreDepartamento;
       if(!this.edicion){
         this.distritoService.insert(distrito).subscribe((data:Object): void => {
           this.distritoService.list().subscribe(data => {
