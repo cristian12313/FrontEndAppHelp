@@ -15,6 +15,8 @@ import {Distrito} from '../../model/distrito';
 import {DistritoService} from '../../services/distrito.service';
 import {MatButton} from '@angular/material/button';
 import {DatePipe} from '@angular/common';
+import {MatToolbar} from '@angular/material/toolbar';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
 @Component({
   selector: 'app-distrito-listar-edit',
@@ -35,7 +37,11 @@ import {DatePipe} from '@angular/common';
     MatRowDef,
     MatHeaderRowDef,
     MatSortHeader,
-    DatePipe
+    DatePipe,
+    MatToolbar,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem
   ],
   templateUrl: './distrito-listardistrito-edit.component.html',
   styleUrl: './distrito-listardistrito-edit.component.css'
