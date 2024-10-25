@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environment/environment';
 import {Departamento} from '../model/departamento';
 import {Observable, Subject} from 'rxjs';
+import {Distrito} from '../model/distrito';
 
 
 @Injectable({
@@ -21,7 +22,8 @@ export class DepartamentoService {
   }
 
   listID(id: number): Observable<any> {
-    return this.http.get(this.url + "/departamento/" + id);
+    console.log(this.url + "/departamento/" + id);
+    return this.http.get<Distrito[]>(this.url + "/departamento/" + id);
   }
 
   insert(departamento: Departamento): Observable<any> {
