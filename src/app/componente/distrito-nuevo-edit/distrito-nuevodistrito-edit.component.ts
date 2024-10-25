@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {DistritoService} from '../../services/distrito.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Distrito} from '../../model/distrito';
@@ -17,11 +17,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {DepartamentoService} from '../../services/departamento.service';
 import {Departamento} from '../../model/departamento';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-distrito-nuevo-edit',
   standalone: true,
   imports: [
+    FormsModule,
     MatCard,
     MatCardTitle,
     MatCardContent, MatLabel, MatHint,
@@ -35,68 +37,61 @@ import {Departamento} from '../../model/departamento';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule, NgForOf
   ],
   templateUrl: './distrito-nuevodistrito-edit.component.html',
   styleUrl: './distrito-nuevodistrito-edit.component.css'
 })
-export class DistritoNuevodistritoEditComponent implements OnInit{
+export class DistritoNuevodistritoEditComponent{
   distritoForm: FormGroup;
   fb: FormBuilder = inject(FormBuilder);
   distritoService: DistritoService = inject(DistritoService);
+  departamentoService: DepartamentoService = inject(DepartamentoService);
   router: Router = inject(Router);
-  id: number =0;
   edicion: boolean = false;
-  route: ActivatedRoute = inject(ActivatedRoute);
+  route: ActivatedRoute = inject(ActivatedRoute)
+  id: number = 0
+  public idDepartamentoSeleccionado: number = 0;
+  lista: Departamento[] = [];
+  idDepartamento: Departamento = new Departamento();
+
   constructor() {
     console.log("Carga constructor de Form")
     this.distritoForm = this.fb.group({
       idDistrito: [''],
       nombre: ['', Validators.required],
+      idDepartamento: ['', Validators.required],
     });
   }
 
-  ngOnInit() {
-    console.log("Carga ngOnInit de Form")
-    this.route.params.subscribe((data) => {
-      console.log(data);
-      this.id = data['id'];
-      this.edicion = data['id'] != null;
-      this.cargarForm();
-    });
+  ngOnInit(): void {
+      this.loadLista();
   }
-  private cargarForm() {
-    if(this.edicion){
-      this.distritoService.listID(this.id).subscribe((data:Distrito):void => {
-        console.log(data);
-        this.distritoForm.patchValue({
-          nombre:data.nombre
-        });
-      });
-    }
+  loadLista(): void {
+    this.departamentoService.list().subscribe({
+      next: (data) => this.lista = data,
+      error: (err) => console.error("Error en consulta", err)
+    })
   }
+
   onSubmit(): void {
     if(this.distritoForm.valid){
-      const distrito:Distrito = new Distrito();
-      distrito.idDistrito = this.id;
-      distrito.nombre = this.distritoForm.value.nombreDepartamento;
-      if(!this.edicion){
-        this.distritoService.insert(distrito).subscribe((data:Object): void => {
-          this.distritoService.list().subscribe(data => {
-            this.distritoService.setList(data);
-          })
-        })
-      }else{
-        this.distritoService.update(distrito).subscribe((data:Object): void => {
-          this.distritoService.list().subscribe(data => {
-            this.distritoService.setList(data);
-          })
-        })
-      }
-      this.router.navigate(['distritos']);
-    }else{
+      const distrito: Distrito = new Distrito();
+      distrito.idDistrito = 0;
+      distrito.nombre = this.distritoForm.value.nombre;
+      distrito.idDepartamento = this.idDepartamento;
+      distrito.idDepartamento.idDepartamento = this.distritoForm.value.idDepartamento;
+      console.log("Distrito validado:", distrito);
+      this.distritoService.insert(distrito).subscribe({
+        next: (data: Object): void => {
+          console.log(data);
+        }
+      })
+      alert("Distrito registrado!")
+      this.router.navigate([''])
+    } else {
+      alert("Formulario no valido!")
       console.log("Formulario no valido");
-      alert("Formulario no valido");
     }
   }
 
