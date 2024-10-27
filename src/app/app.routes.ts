@@ -19,6 +19,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadComponent: () => import('./authentication/login/login.component') },
 
+  // Rutas para dashboard
   {
     path: 'dashboard',
     component: DashboardComponent,
