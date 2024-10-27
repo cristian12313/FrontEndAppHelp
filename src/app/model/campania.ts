@@ -4,4 +4,5 @@ export class Campania {
   descripcion:string;
   nombre:string;
   ubicacion:string;
+
 }

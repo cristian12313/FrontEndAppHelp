@@ -20,7 +20,7 @@ export class DonacionService {
   insert(donacion:Donacion):Observable<any> {
     return this.http.post(this.url+"/donacion",donacion);
   }
-  updte(donacion:Donacion):Observable<any> {
+  update(donacion:Donacion):Observable<any> {
     return this.http.put(this.url+"/donacion",donacion);
   }
   delete(id:number):Observable<any> {

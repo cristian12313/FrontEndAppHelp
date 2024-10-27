@@ -46,6 +46,8 @@ export class CampaniaNuevoEditComponent implements OnInit{
   id: number =0;
   edicion: boolean = false;
   route: ActivatedRoute = inject(ActivatedRoute);
+
+
   constructor() {
     console.log("Carga constructor de Form")
     this.campaniaForm = this.fb.group({
