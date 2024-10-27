@@ -23,7 +23,7 @@ export class CampaniaService {
   insert(campania:Campania):Observable<any> {
     return this.http.post(this.url+"/campania",campania);
   }
-  update(campania:Campania): Observable<any>{
+  updte(campania:Campania): Observable<any>{
     return this.http.put(this.url + "/campania", campania);
   }
   delete(id: number): Observable<any>{
