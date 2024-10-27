@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-title>Formulario de Tipo de Donación</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="tipodonacionForm" class="form-container">
+      <!-- Campo Selección de Tipo de Donación -->
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de Donación:</mat-label>
+        <mat-select formControlName="nombre">
+          <mat-option [value]="'Económica'">Económica</mat-option>
+          <mat-option [value]="'De bienes'">De bienes</mat-option>
+          <mat-option [value]="'Voluntariado'">Voluntariado</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Botón de Envío -->
+      <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
