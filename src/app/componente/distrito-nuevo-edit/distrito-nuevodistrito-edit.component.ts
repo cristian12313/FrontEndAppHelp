@@ -79,7 +79,7 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
     if(this.distritoForm.valid){
       const distrito:Distrito = new Distrito();
       distrito.idDistrito = this.id;
-      distrito.nombre = this.distritoForm.value.nombreDepartamento;
+      distrito.nombre = this.distritoForm.value.nombre;
       if(!this.edicion){
         this.distritoService.insert(distrito).subscribe((data:Object): void => {
           this.distritoService.list().subscribe(data => {
@@ -93,7 +93,7 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
           })
         })
       }
-      this.router.navigate(['distritos']);
+      this.router.navigate(['/dashboard/distritos']);
     }else{
       console.log("Formulario no valido");
       alert("Formulario no valido");

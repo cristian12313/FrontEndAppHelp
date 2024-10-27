@@ -35,9 +35,16 @@
       <th mat-header-cell *matHeaderCellDef> Update </th>
       <td mat-cell *matCellDef="let element">
         <button mat-raised-button color="primary"
-                [routerLink]="['/nuevo-edit',element.idCampania]">
+                [routerLink]="['/dashboard/nuevocampania-edit',element.idCampania]">
           <span class="material-icons">update</span>
         </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn"
+                (click)="openDialog(element.idCampania)"><span class="material-icons">delete_sweep</span></button>
       </td>
     </ng-container>
 

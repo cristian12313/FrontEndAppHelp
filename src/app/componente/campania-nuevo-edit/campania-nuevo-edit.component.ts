@@ -100,7 +100,7 @@ export class CampaniaNuevoEditComponent implements OnInit{
           })
         })
       }
-      this.router.navigate(['campanias']);
+      this.router.navigate(['/dashboard/campanias']);
     }else{
       console.log("Formulario no valido");
       alert("Formulario no valido");

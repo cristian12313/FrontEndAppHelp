@@ -92,7 +92,7 @@ export class DepartamentoNuevodepartamentoEditComponent implements OnInit{
           })
         })
       }
-      this.router.navigate(['departamentos']);
+      this.router.navigate(['/dashboard/departamentos']);
     }else{
       console.log("Formulario no valido");
       alert("Formulario no valido");

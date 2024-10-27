@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environment/environment';
 import {Campania} from '../model/campania';
 import {Observable, Subject} from 'rxjs';
+import {Donacion} from '../model/donacion';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,9 @@ export class CampaniaService {
     return this.http.get(this.url+"/campanias");
   }
   listID(id: number):Observable<any> {
-    return this.http.get(this.url+"/campania/"+ id);
+    return this.http.get<Donacion[]>(this.url+"/campania/"+ id);
   }
+
   insert(campania:Campania):Observable<any> {
     return this.http.post(this.url+"/campania",campania);
   }
