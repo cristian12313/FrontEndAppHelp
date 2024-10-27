@@ -9,22 +9,18 @@
           <mat-option [value]="false">No</mat-option>
         </mat-select>
       </mat-form-field>
-
       <mat-form-field appearance="fill">
         <mat-label>Descripcion</mat-label>
         <input matInput formControlName="descripcion" placeholder="Ingrese su descripcion" />
       </mat-form-field>
-
       <mat-form-field appearance="fill">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" placeholder="Ingrese su nombre" />
       </mat-form-field>
-
       <mat-form-field appearance="fill">
         <mat-label>ubicacion</mat-label>
         <input matInput formControlName="ubicacion" placeholder="Ingrese su ubicacion" />
       </mat-form-field>
-
       <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
     </form>
   </mat-card-content>
