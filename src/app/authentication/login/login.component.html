@@ -1,49 +1,88 @@
-<div style="background-color: #4A148C; position: absolute; top: 0; left: 0; background: linear-gradient(to bottom, #1F2937, #1F2937, #4A148C); bottom: 0; height: 100%; width: 100%; overflow: hidden;">
-</div>
-<div style="position: relative; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: transparent; border-radius: 24px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-  <div style="display: flex; flex-direction: column; padding: 20px;">
-    <div style="color: #E5E7EB;">
-      <h1 style="margin-bottom: 12px; font-weight: 600; font-size: 45px;">Bienvenido de nuevo</h1>
-      <p style="padding-right: 12px; font-size: 14px; opacity: 0;">Login de Autenticación con el framework Angular 18+ en una aplicación de Dashboard de usuario con un menú amigable.</p>
+<!--<div style="background-color: #4A148C; position: absolute; top: 0; left: 0; background: linear-gradient(to bottom, #1F2937, #1F2937, #4A148C); bottom: 0; height: 100%; width: 100%; overflow: hidden;">-->
+<!--</div>-->
+<!--<div style="position: relative; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: transparent; border-radius: 24px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">-->
+<!--  <div style="display: flex; flex-direction: column; padding: 20px;">-->
+<!--    <div style="color: #E5E7EB;">-->
+<!--      <h1 style="margin-bottom: 12px; font-weight: 600; font-size: 45px;">Bienvenido de nuevo</h1>-->
+<!--      <p style="padding-right: 12px; font-size: 14px; opacity: 0;">Login de Autenticación con el framework Angular 18+ en una aplicación de Dashboard de usuario con un menú amigable.</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div style="display: flex; justify-content: center;">-->
+<!--    <div style="padding: 48px; background-color: #FFFFFF; border-radius: 24px; width: 384px;">-->
+<!--      <div style="margin-bottom: 28px;">-->
+<!--        <h3 style="font-weight: 600; font-size: 24px; color: #1F2937;">Iniciar sesión</h3>-->
+<!--        <p style="color: #9CA3AF;">¿No tienes una cuenta? <a href="#" style="font-size: 14px; color: #7E22CE;">Inscríbete</a></p>-->
+<!--      </div>-->
+<!--      <div style="margin-bottom: 16px;">-->
+<!--        <input [(ngModel)]="username" style="width: 100%; font-size: 14px; padding: 12px; background-color: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 8px;" placeholder="Username">-->
+<!--      </div>-->
+<!--      <div style="position: relative; margin-bottom: 16px;">-->
+<!--        <input [(ngModel)]="password" type="password" placeholder="Password" style="width: 100%; font-size: 14px; padding: 12px; background-color: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 8px;">-->
+<!--      </div>-->
+<!--      <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">-->
+<!--        <div>-->
+<!--          <a href="#" style="color: #7E22CE; font-size: 14px;">¿Olvidaste tu contraseña?</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button (click)="login()" style="width: 100%; display: flex; justify-content: center; background-color: #6B21A8; color: #FFFFFF; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.5s ease;">-->
+<!--        Iniciar sesión-->
+<!--      </button>-->
+<!--      <div style="display: flex; justify-content: center; margin: 20px 0; align-items: center;">-->
+<!--        <span style="height: 1px; width: 64px; background-color: #E5E7EB;"></span>-->
+<!--        <span style="color: #D1D5DB; font-weight: 400; margin: 0 12px;">or</span>-->
+<!--        <span style="height: 1px; width: 64px; background-color: #E5E7EB;"></span>-->
+<!--      </div>-->
+<!--      <div style="display: flex; gap: 20px; width: 100%;">-->
+<!--        <button type="submit" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid #D1D5DB; color: #9CA3AF; border-radius: 8px; font-weight: 500; transition: background-color 0.5s ease;">-->
+<!--          <span>Google</span>-->
+<!--        </button>-->
+<!--        <button type="submit" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid #D1D5DB; color: #9CA3AF; border-radius: 8px; font-weight: 500; transition: background-color 0.5s ease;">-->
+<!--          <span>Facebook</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div style="text-align: center; margin-top: 28px; color: #D1D5DB; font-size: 12px;">-->
+<!--        <span>Copyright © 2021-2024</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<svg style="position: absolute; bottom: -180px; left: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,0L40,42.7C80,85,160,171,240,197.3C320,224,400,192,480,154.7C560,117,640,75,720,74.7C800,75,880,117,960,154.7C1040,192,1120,224,1200,213.3C1280,203,1360,149,1400,122.7L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="login.component.css">
+<!--  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>-->
+</head>
+<body>
+<div class="wrapper">
+  <form action="">
+    <h1>Iniciar Sesion</h1>
+    <div class="llama-container">
+      <img src="../../img/llamalogin.png" class="llama" alt="Llama">
     </div>
-  </div>
-  <div style="display: flex; justify-content: center;">
-    <div style="padding: 48px; background-color: #FFFFFF; border-radius: 24px; width: 384px;">
-      <div style="margin-bottom: 28px;">
-        <h3 style="font-weight: 600; font-size: 24px; color: #1F2937;">Iniciar sesión</h3>
-        <p style="color: #9CA3AF;">¿No tienes una cuenta? <a href="#" style="font-size: 14px; color: #7E22CE;">Inscríbete</a></p>
-      </div>
-      <div style="margin-bottom: 16px;">
-        <input [(ngModel)]="username" style="width: 100%; font-size: 14px; padding: 12px; background-color: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 8px;" placeholder="Username">
-      </div>
-      <div style="position: relative; margin-bottom: 16px;">
-        <input [(ngModel)]="password" type="password" placeholder="Password" style="width: 100%; font-size: 14px; padding: 12px; background-color: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 8px;">
-      </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-        <div>
-          <a href="#" style="color: #7E22CE; font-size: 14px;">¿Olvidaste tu contraseña?</a>
-        </div>
-      </div>
-      <button (click)="login()" style="width: 100%; display: flex; justify-content: center; background-color: #6B21A8; color: #FFFFFF; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.5s ease;">
-        Iniciar sesión
-      </button>
-      <div style="display: flex; justify-content: center; margin: 20px 0; align-items: center;">
-        <span style="height: 1px; width: 64px; background-color: #E5E7EB;"></span>
-        <span style="color: #D1D5DB; font-weight: 400; margin: 0 12px;">or</span>
-        <span style="height: 1px; width: 64px; background-color: #E5E7EB;"></span>
-      </div>
-      <div style="display: flex; gap: 20px; width: 100%;">
-        <button type="submit" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid #D1D5DB; color: #9CA3AF; border-radius: 8px; font-weight: 500; transition: background-color 0.5s ease;">
-          <span>Google</span>
-        </button>
-        <button type="submit" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid #D1D5DB; color: #9CA3AF; border-radius: 8px; font-weight: 500; transition: background-color 0.5s ease;">
-          <span>Facebook</span>
-        </button>
-      </div>
-      <div style="text-align: center; margin-top: 28px; color: #D1D5DB; font-size: 12px;">
-        <span>Copyright © 2021-2024</span>
-      </div>
+    <div class="input-box">
+<!--  <input type="text" placeholder="Username">-->
+      <input [(ngModel)]="username" type="text" placeholder="Username">
+      <i class='bx bxs-user'></i>
     </div>
-  </div>
+    <div class="input-box">
+      <input [(ngModel)]="password" type="password" placeholder="Password">
+      <i class='bx bxs-lock-alt' ></i>
+    </div>
+    <div class="remember-forgot">
+      <label><input type="checkbox">Remember me</label>
+      <a href="#">Forgot Password</a>
+    </div>
+    <button (click)="login()" type="submit" class="btn"><a class="botontext" href="">
+      Login</a>
+    </button>
+    <div class="register-link">
+      <p>Dont you have an account? <a href="#">Register</a></p>
+    </div>
+  </form>
 </div>
-<svg style="position: absolute; bottom: -180px; left: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,0L40,42.7C80,85,160,171,240,197.3C320,224,400,192,480,154.7C560,117,640,75,720,74.7C800,75,880,117,960,154.7C1040,192,1120,224,1200,213.3C1280,203,1360,149,1400,122.7L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+</body>
+</html>
