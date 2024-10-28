@@ -1,0 +1,23 @@
+<mat-card class="example-card">
+  <mat-card-title>Formulario de Cuenta Bancaria</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="cuentabancariaForm" class="form-container">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del banco</mat-label>
+        <input matInput formControlName="nombreBanco" placeholder="Ingrese el nombre del banco" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del numero de cuenta</mat-label>
+        <input matInput formControlName="numneroCuenta" placeholder="Ingrese el nombre del numero" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del cci</mat-label>
+        <input matInput formControlName="cci" placeholder="Ingrese el nombre del cci" />
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
+    </form>
+  </mat-card-content>
+</mat-card>

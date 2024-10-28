@@ -3,21 +3,23 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
-  MatTable,
-  MatTableDataSource
+  MatTable, MatTableDataSource
 } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
-import {Router, RouterLink} from '@angular/router';
-import {Distrito} from '../../model/distrito';
-import {DistritoService} from '../../services/distrito.service';
 import {MatButton} from '@angular/material/button';
+import {MatPaginator} from '@angular/material/paginator';
+import {Router, RouterLink} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {Departamento} from '../../model/departamento';
+import {DepartamentoService} from '../../services/departamento.service';
+import {Estado} from '../../model/estados';
+import {EstadoService} from '../../services/estado.service';
 
 @Component({
-  selector: 'app-distrito-listar-edit',
+  selector: 'app-estado-listar',
   standalone: true,
   imports: [
     MatTable,
@@ -37,16 +39,16 @@ import {DatePipe} from '@angular/common';
     MatSortHeader,
     DatePipe
   ],
-  templateUrl: './distrito-listardistrito-edit.component.html',
-  styleUrl: './distrito-listardistrito-edit.component.css'
+  templateUrl: './estado-listar.component.html',
+  styleUrl: './estado-listar.component.css'
 })
-export class DistritoListardistritoEditComponent {
-  lista:Distrito[]=[];
-  displayedColumns: string[]=['idDistrito','nombre','departamento','accion01'];
-  dataSource:MatTableDataSource<Distrito>=new MatTableDataSource<Distrito>;
+export class EstadoListarComponent {
+  lista:Estado[]=[];
+  displayedColumns: string[]=['idEstado','nombre','accion01'];
+  dataSource:MatTableDataSource<Estado>=new MatTableDataSource<Estado>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  distritoService:DistritoService=inject(DistritoService);
+  estadoService:EstadoService=inject(EstadoService);
   router:Router=inject(Router);
   constructor()  {
     console.log("Load constructor!")
@@ -61,10 +63,9 @@ export class DistritoListardistritoEditComponent {
   }
 
   private loadLista():void {
-    this.distritoService.list().subscribe({
+    this.estadoService.list().subscribe({
       next: (data) => this.dataSource.data=data,
       error: (error) => console.log("Error error error",error),
     });
   }
-
 }

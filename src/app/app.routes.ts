@@ -11,6 +11,22 @@ import {DistritoListardistritoEditComponent} from './componente/distrito-listar-
 import {DonacionNuevoEditComponent} from './componente/donacion-nuevo-edit/donacion-nuevo-edit.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './auth.guard';
+import {
+  TipobeneficiarioNuevoEditComponent
+} from './componente/tipobeneficiario-nuevo-edit/tipobeneficiario-nuevo-edit.component';
+import {TipobeneficarioListarComponent} from './componente/tipobeneficario-listar/tipobeneficario-listar.component';
+import {CuentabancariaListarComponent} from './componente/cuentabancaria-listar/cuentabancaria-listar.component';
+import {EstadoListarComponent} from './componente/estado-listar/estado-listar.component';
+import {EstadoNuevoEditComponent} from './componente/estado-nuevo-edit/estado-nuevo-edit.component';
+import {
+  CuentabancariaNuevoEditComponent
+} from './componente/cuentabancaria-nuevo-edit/cuentabancaria-nuevo-edit.component';
+import {TipodonacionListarComponent} from './componente/tipodonacion-listar/tipodonacion-listar.component';
+import {TipodonacionNuevoEditComponent} from './componente/tipodonacion-nuevo-edit/tipodonacion-nuevo-edit.component';
+import {TipousuarioListarComponent} from './componente/tipousuario-listar/tipousuario-listar.component';
+import {TipousuarioNuevoEditComponent} from './componente/tipousuario-nuevo-edit/tipousuario-nuevo-edit.component';
+import {UsuarioListarComponent} from './componente/usuario-listar/usuario-listar.component';
+import {UsuarioNuevoEditComponent} from './componente/usuario-nuevo-edit/usuario-nuevo-edit.component';
 
 export const routes: Routes = [
   // Ruta para redirigir a login si no está autenticado
@@ -40,6 +56,25 @@ export const routes: Routes = [
   { path: 'distritos', component: DistritoListardistritoEditComponent, canActivate: [AuthGuard] },
   { path: 'nuevodistrito', component: DistritoNuevodistritoEditComponent, canActivate: [AuthGuard] },
   { path: 'nuevodistrito-edit/:id', component: DistritoNuevodistritoEditComponent, canActivate: [AuthGuard] },
+      { path: 'tipobeneficiarios', component: TipobeneficarioListarComponent, canActivate: [AuthGuard] },
+      { path: 'nuevotipobeneficiario', component: TipobeneficiarioNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'nuevotipobeneficiario-edit/:id', component: TipobeneficiarioNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'cuentabancarias', component: CuentabancariaListarComponent, canActivate: [AuthGuard] },
+      { path: 'nuevocuentabancaria', component: CuentabancariaNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'nuevocuentabancaria-edit/:id', component: CuentabancariaNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'estados', component: EstadoListarComponent, canActivate: [AuthGuard] },
+      { path: 'nuevoestado', component: EstadoNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'nuevoestado-edit/:id', component: EstadoNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'tipoDonaciones', component: TipodonacionListarComponent, canActivate: [AuthGuard] },
+      { path: 'nuevotipoDonacion', component: TipodonacionNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'nuevotipoDonacion-edit/:id', component: TipodonacionNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'tipousuarios', component: TipousuarioListarComponent, canActivate: [AuthGuard] },
+      { path: 'nuevotipousuario', component: TipousuarioNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'nuevotipousuario-edit/:id', component: TipousuarioNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'usuarios', component: UsuarioListarComponent, canActivate: [AuthGuard] },
+      { path: 'nuevousuario', component: UsuarioNuevoEditComponent, canActivate: [AuthGuard] },
+      { path: 'nuevousuario-edit/:id', component: UsuarioNuevoEditComponent, canActivate: [AuthGuard] },
+
     ]
   },
 

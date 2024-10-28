@@ -3,21 +3,21 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatHeaderCell,
+  MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
   MatTable,
   MatTableDataSource
 } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {Router, RouterLink} from '@angular/router';
-import {Distrito} from '../../model/distrito';
-import {DistritoService} from '../../services/distrito.service';
+import {Tipobeneficiario} from '../../model/tipobeneficiario';
+import {TipobeneficiarioService} from '../../services/tipobeneficiario.service';
 import {MatButton} from '@angular/material/button';
 import {DatePipe} from '@angular/common';
 
 @Component({
-  selector: 'app-distrito-listar-edit',
+  selector: 'app-tipobeneficario-listar',
   standalone: true,
   imports: [
     MatTable,
@@ -37,16 +37,16 @@ import {DatePipe} from '@angular/common';
     MatSortHeader,
     DatePipe
   ],
-  templateUrl: './distrito-listardistrito-edit.component.html',
-  styleUrl: './distrito-listardistrito-edit.component.css'
+  templateUrl: './tipobeneficario-listar.component.html',
+  styleUrl: './tipobeneficario-listar.component.css'
 })
-export class DistritoListardistritoEditComponent {
-  lista:Distrito[]=[];
-  displayedColumns: string[]=['idDistrito','nombre','departamento','accion01'];
-  dataSource:MatTableDataSource<Distrito>=new MatTableDataSource<Distrito>;
+export class TipobeneficarioListarComponent {
+  lista:Tipobeneficiario[]=[];
+  displayedColumns: string[]=['idTipobene','nombre','accion01'];
+  dataSource:MatTableDataSource<Tipobeneficiario>=new MatTableDataSource<Tipobeneficiario>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  distritoService:DistritoService=inject(DistritoService);
+  tipobeneficiarioService:TipobeneficiarioService=inject(TipobeneficiarioService);
   router:Router=inject(Router);
   constructor()  {
     console.log("Load constructor!")
@@ -61,10 +61,9 @@ export class DistritoListardistritoEditComponent {
   }
 
   private loadLista():void {
-    this.distritoService.list().subscribe({
+    this.tipobeneficiarioService.list().subscribe({
       next: (data) => this.dataSource.data=data,
       error: (error) => console.log("Error error error",error),
     });
   }
-
 }

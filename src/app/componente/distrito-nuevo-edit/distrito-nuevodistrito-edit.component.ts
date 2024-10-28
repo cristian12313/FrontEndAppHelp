@@ -17,6 +17,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {DepartamentoService} from '../../services/departamento.service';
 import {Departamento} from '../../model/departamento';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-distrito-nuevo-edit',
@@ -35,7 +36,7 @@ import {Departamento} from '../../model/departamento';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule, NgForOf
   ],
   templateUrl: './distrito-nuevodistrito-edit.component.html',
   styleUrl: './distrito-nuevodistrito-edit.component.css'
@@ -48,11 +49,19 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
   id: number =0;
   edicion: boolean = false;
   route: ActivatedRoute = inject(ActivatedRoute);
+
+  //
+  departamentoService: DepartamentoService = inject(DepartamentoService);
+  public idDepartamentoSeleccionado: number = 0;
+  lista: Departamento[] = [];
+  departamento: Departamento = new Departamento();
   constructor() {
     console.log("Carga constructor de Form")
     this.distritoForm = this.fb.group({
       idDistrito: [''],
       nombre: ['', Validators.required],
+      //
+      departamento: ['', [Validators.required]],
     });
   }
 
@@ -70,7 +79,8 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
       this.distritoService.listID(this.id).subscribe((data:Distrito):void => {
         console.log(data);
         this.distritoForm.patchValue({
-          nombre:data.nombre
+          nombre:data.nombre,
+          departamento:data.departamento
         });
       });
     }
@@ -80,6 +90,9 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
       const distrito:Distrito = new Distrito();
       distrito.idDistrito = this.id;
       distrito.nombre = this.distritoForm.value.nombre;
+      //
+      distrito.departamento = this.departamento;
+      distrito.departamento.idDepartamento = this.distritoForm.value.departamento;
       if(!this.edicion){
         this.distritoService.insert(distrito).subscribe((data:Object): void => {
           this.distritoService.list().subscribe(data => {

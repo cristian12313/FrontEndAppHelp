@@ -3,21 +3,21 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
-  MatTable,
-  MatTableDataSource
+  MatTable, MatTableDataSource
 } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
-import {Router, RouterLink} from '@angular/router';
-import {Distrito} from '../../model/distrito';
-import {DistritoService} from '../../services/distrito.service';
 import {MatButton} from '@angular/material/button';
+import {MatPaginator} from '@angular/material/paginator';
+import {Router, RouterLink} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {Cuentabancaria} from '../../model/cuentabancaria';
+import {CuentabancariaService} from '../../services/cuentabancaria.service';
 
 @Component({
-  selector: 'app-distrito-listar-edit',
+  selector: 'app-cuentabancaria-listar',
   standalone: true,
   imports: [
     MatTable,
@@ -37,16 +37,16 @@ import {DatePipe} from '@angular/common';
     MatSortHeader,
     DatePipe
   ],
-  templateUrl: './distrito-listardistrito-edit.component.html',
-  styleUrl: './distrito-listardistrito-edit.component.css'
+  templateUrl: './cuentabancaria-listar.component.html',
+  styleUrl: './cuentabancaria-listar.component.css'
 })
-export class DistritoListardistritoEditComponent {
-  lista:Distrito[]=[];
-  displayedColumns: string[]=['idDistrito','nombre','departamento','accion01'];
-  dataSource:MatTableDataSource<Distrito>=new MatTableDataSource<Distrito>;
+export class CuentabancariaListarComponent {
+  lista:Cuentabancaria[]=[];
+  displayedColumns: string[]=['idCuentaBanc','nombreBanco','numneroCuenta','cci','accion01'];
+  dataSource:MatTableDataSource<Cuentabancaria>=new MatTableDataSource<Cuentabancaria>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  distritoService:DistritoService=inject(DistritoService);
+  cuentabancariaService:CuentabancariaService=inject(CuentabancariaService);
   router:Router=inject(Router);
   constructor()  {
     console.log("Load constructor!")
@@ -61,10 +61,9 @@ export class DistritoListardistritoEditComponent {
   }
 
   private loadLista():void {
-    this.distritoService.list().subscribe({
+    this.cuentabancariaService.list().subscribe({
       next: (data) => this.dataSource.data=data,
       error: (error) => console.log("Error error error",error),
     });
   }
-
 }
