@@ -6,18 +6,21 @@ import {Donacion} from '../model/donacion';
 import {Campania} from '../model/campania';
 import {Usuario} from '../model/usuario';
 import {Tipousuario} from '../model/tipousuario';
+import {Departamento} from '../model/departamento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private url=environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http:HttpClient=inject(HttpClient);
   private listaCambio : Subject<Usuario[]> = new Subject<Usuario[]>();
 
   constructor() { }
   list():Observable<any> {
-    return this.http.get(this.url+"/usuarios");
+    return this.http.get<Usuario[]>(this.url+"/usuarios");
   }
   listID(id: number):Observable<any> {
     return this.http.get<Tipousuario[]>(this.url+"/usuario/"+ id);

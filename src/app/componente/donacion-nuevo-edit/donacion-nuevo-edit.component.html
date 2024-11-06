@@ -35,11 +35,21 @@
         <input matInput formControlName="detalle" placeholder="Ingrese su detalle" />
       </mat-form-field>
 
-<!--      manytoone-->
+<!--    CAMPAÑA  manytoone-->
       <mat-form-field appearance="fill">
         <mat-label>Campaña</mat-label>
         <mat-select formControlName="campania" [(value)]="idCampaniaSeleccionado" required>
           <mat-option *ngFor="let a of lista" [value]="a.idCampania">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--    TIPO DONACION  manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo Donacion</mat-label>
+        <mat-select formControlName="tipodonacion" [(value)]="idTipoDonacionSeleccionado" required>
+          <mat-option *ngFor="let a of lista1" [value]="a.idTipodonacion">
             {{a.nombre}}
           </mat-option>
         </mat-select>

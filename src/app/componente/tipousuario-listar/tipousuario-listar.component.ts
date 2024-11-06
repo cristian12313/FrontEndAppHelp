@@ -47,7 +47,7 @@ import {TipousuarioService} from '../../services/tipousuario.service';
 })
 export class TipousuarioListarComponent implements OnInit, AfterViewInit{
   lista:Tipousuario[]=[];
-  displayedColumns: string[]=['idTipousuario','nombre','descripcion','accion01'];
+  displayedColumns: string[]=['idTipousuario','nombre','descripcion','accion01', 'accion02'];
   dataSource:MatTableDataSource<Tipousuario>=new MatTableDataSource<Tipousuario>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

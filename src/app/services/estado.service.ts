@@ -3,12 +3,15 @@ import {environment} from '../../environment/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Estado} from '../model/estados';
+import {Departamento} from '../model/departamento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstadoService {
-  private url = environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http: HttpClient = inject(HttpClient);
   private listaCambio: Subject<Estado[]> = new Subject<Estado[]>();
 
@@ -16,11 +19,11 @@ export class EstadoService {
   }
 
   list(): Observable<any> {
-    return this.http.get(this.url + "/estados");
+    return this.http.get<Estado[]>(this.url + "/estados");
   }
 
   listID(id: number): Observable<any> {
-    return this.http.get(this.url + "/estado/" + id);
+    return this.http.get<Estado[]>(this.url + "/estado/" + id);
   }
 
   insert(estado: Estado): Observable<any> {

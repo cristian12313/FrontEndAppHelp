@@ -18,6 +18,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {Campania} from '../../model/campania';
 import {CampaniaService} from '../../services/campania.service';
 import {NgForOf} from "@angular/common";
+import {Tipodonacion} from '../../model/tipodonacion';
+import {TipodonacionService} from '../../services/tipodonacion.service';
 
 @Component({
   selector: 'app-donacion-nuevo-edit',
@@ -51,11 +53,17 @@ export class DonacionNuevoEditComponent implements OnInit{
   edicion: boolean = false;
   route: ActivatedRoute = inject(ActivatedRoute);
 
-  //
+  //CAMPAÑA
   campaniaService: CampaniaService = inject(CampaniaService);
   public idCampaniaSeleccionado: number = 0;
   lista: Campania[] = [];
   campania: Campania = new Campania();
+
+  //TIPO DONACION
+  tipodonacionService: TipodonacionService = inject(TipodonacionService);
+  public idTipoDonacionSeleccionado: number = 0;
+  lista1: Tipodonacion[] = [];
+  tipodonacion: Tipodonacion = new Tipodonacion();
 
   constructor() {
     console.log("Carga constructor de Form")
@@ -68,6 +76,7 @@ export class DonacionNuevoEditComponent implements OnInit{
       detalle: ['', [Validators.required]],
       //
       campania: ['', [Validators.required]],
+      tipodonacion: ['', [Validators.required]],
     });
   }
 
@@ -87,6 +96,10 @@ export class DonacionNuevoEditComponent implements OnInit{
       next: (data) => this.lista = data,
       error: (err) => console.error("Error en consulta", err)
     })
+    this.tipodonacionService.list().subscribe({
+      next: (data) => this.lista1 = data,
+      error: (err) => console.error("Error en consulta", err)
+    })
   }
   private cargarForm() {
     if(this.edicion){
@@ -98,7 +111,9 @@ export class DonacionNuevoEditComponent implements OnInit{
           fechaInicio:data.fechaInicio,
           fechaFin:data.fechaFin,
           detalle:data.detalle,
-          campania:data.campania
+          //
+          campania:data.campania,
+          tipodonacion:data.tipodonacion
         });
       });
     }
@@ -116,6 +131,9 @@ export class DonacionNuevoEditComponent implements OnInit{
       //
       donacion.campania = this.campania;
       donacion.campania.idCampania = this.donacionForm.value.campania;
+      //
+      donacion.tipodonacion = this.tipodonacion;
+      donacion.tipodonacion.idTipodonacion = this.donacionForm.value.tipodonacion;
       if(!this.edicion){
         this.donacionService.insert(donacion).subscribe((data:Object): void => {
           this.donacionService.list().subscribe(data => {

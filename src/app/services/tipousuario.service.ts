@@ -4,19 +4,22 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Tipousuario} from '../model/tipousuario';
 import {Usuario} from '../model/usuario';
+import {Departamento} from '../model/departamento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipousuarioService {
-  private url=environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http:HttpClient=inject(HttpClient);
   private listaCambio : Subject<Tipousuario[]> = new Subject<Tipousuario[]>();
 
   constructor() { }
 
   list():Observable<any> {
-    return this.http.get(this.url+"/tipousuarios");
+    return this.http.get<Tipousuario[]>(this.url+"/tipousuarios");
   }
   listID(id: number):Observable<any> {
     return this.http.get<Usuario[]>(this.url+"/tipousuario/"+ id);

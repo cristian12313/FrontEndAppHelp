@@ -4,18 +4,21 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Donacion} from '../model/donacion';
 import {Campania} from '../model/campania';
+import {Departamento} from '../model/departamento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonacionService {
-  private url=environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http:HttpClient=inject(HttpClient);
   private listaCambio : Subject<Donacion[]> = new Subject<Donacion[]>();
 
   constructor() { }
   list():Observable<any> {
-    return this.http.get(this.url+"/donaciones");
+    return this.http.get<Donacion[]>(this.url+"/donaciones");
   }
   listID(id: number):Observable<any> {
     return this.http.get<Campania[]>(this.url+"/donacion/"+ id);

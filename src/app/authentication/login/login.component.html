@@ -8,52 +8,45 @@
 </head>
 <body>
 
-<div style="position: relative; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: transparent; border-radius: 24px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-  <div style="display: flex; flex-direction: column; padding: 20px;">
-<!--    <div style="color: #E5E7EB;">-->
-<!--      <h1 style="margin-bottom: 12px; font-weight: 600; font-size: 45px;">Bienvenido de nuevo</h1>-->
-<!--      <p style="padding-right: 12px; font-size: 14px; opacity: 0;">Login de Autenticación con el framework Angular 18+ en una aplicación de Dashboard de usuario con un menú amigable.</p>-->
-<!--    </div>-->
-  </div>
-  <div style="display: flex; justify-content: center;">
-    <div style="padding: 48px; background-color: #FFFFFF; border-radius: 24px; width: 384px;">
-      <div style="margin-bottom: 28px;">
-        <h3 style="font-weight: 600; font-size: 24px; color: #1F2937;">Iniciar sesión</h3>
-        <p style="color: #9CA3AF;">¿No tienes una cuenta? <a href="#" style="font-size: 14px; color: #7E22CE;">Inscríbete</a></p>
-      </div>
-      <div style="margin-bottom: 16px;">
-        <input [(ngModel)]="username" style="width: 100%; font-size: 14px; padding: 12px; background-color: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 8px;" placeholder="Username">
-      </div>
-      <div style="position: relative; margin-bottom: 16px;">
-        <input [(ngModel)]="password" type="password" placeholder="Password" style="width: 100%; font-size: 14px; padding: 12px; background-color: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 8px;">
-      </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-        <div>
-          <a href="#" style="color: #7E22CE; font-size: 14px;">¿Olvidaste tu contraseña?</a>
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-title>Iniciar sesión</mat-card-title>
+    <mat-card-content>
+      <p class="subtitle">¿No tienes una cuenta? <a href="#">Inscríbete</a></p>
+      <form [formGroup]="loginForm" class="form-container">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput formControlName="username" placeholder="Ingrese su usuario" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Ingrese su password" />
+        </mat-form-field>
+
+        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+
+        <button mat-raised-button color="primary" class="full-width" (click)="onSubmit()">Iniciar sesión</button>
+
+        <div class="divider">
+          <span class="line"></span>
+          <span class="or-text">o</span>
+          <span class="line"></span>
         </div>
-      </div>
-      <button (click)="login()" style="width: 100%; display: flex; justify-content: center; background-color: #6B21A8; color: #FFFFFF; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.5s ease;">
-        Iniciar sesión
-      </button>
-      <div style="display: flex; justify-content: center; margin: 20px 0; align-items: center;">
-        <span style="height: 1px; width: 64px; background-color: #E5E7EB;"></span>
-        <span style="color: #D1D5DB; font-weight: 400; margin: 0 12px;">or</span>
-        <span style="height: 1px; width: 64px; background-color: #E5E7EB;"></span>
-      </div>
-      <div style="display: flex; gap: 20px; width: 100%;">
-        <button type="submit" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid #D1D5DB; color: #9CA3AF; border-radius: 8px; font-weight: 500; transition: background-color 0.5s ease;">
-          <span>Google</span>
-        </button>
-        <button type="submit" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid #D1D5DB; color: #9CA3AF; border-radius: 8px; font-weight: 500; transition: background-color 0.5s ease;">
-          <span>Facebook</span>
-        </button>
-      </div>
-      <div style="text-align: center; margin-top: 28px; color: #D1D5DB; font-size: 12px;">
-        <span>Copyright © 2021-2024</span>
-      </div>
-    </div>
-  </div>
+
+        <div class="social-buttons">
+          <button mat-stroked-button color="accent" class="social-button">Google</button>
+          <button mat-stroked-button color="accent" class="social-button">Facebook</button>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-footer class="footer">
+      <span>Copyright © 2021-2024</span>
+    </mat-card-footer>
+  </mat-card>
 </div>
 
 </body>
 </html>
+
+

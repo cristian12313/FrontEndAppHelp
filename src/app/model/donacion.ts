@@ -1,4 +1,5 @@
 import {Campania} from './campania';
+import {Tipodonacion} from './tipodonacion';
 
 export class Donacion {
   idDonacion: number;
@@ -8,4 +9,5 @@ export class Donacion {
   fechaFin: Date=new Date();
   detalle: string;
   campania: Campania;
+  tipodonacion:Tipodonacion;
 }
