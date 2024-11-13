@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+  <span>APP HELP</span>
+  <span class="toolbar-item-spacer"></span>
+  <button mat-icon-button matTooltip="Share">
+    <mat-icon>share</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Notifications">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon><span>My Account</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon><span>Settings</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon> Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="eco-recaudacion-section">
+  <h2 class="titulo-central">CONSULTAS</h2>
+  <button mat-raised-button color="primary" (click)="getEcoRecaudacionData()">Recaudación Económica</button>
+<!--  <button mat-raised-button color="accent" (click)="getDonacionesPorEstado()">Donaciones por Estado</button>-->
+<!--  <button mat-raised-button color="warn" (click)="getDonacionesPorDonante('12345678')">Donaciones por Donante</button>-->
+<!--  <button mat-raised-button color="accent" (click)="getDonacionesPorCampania('Campaña1')">Donaciones por Campaña</button>-->
+<!--  <button mat-raised-button color="primary" (click)="getDonacionesPorIntervalo('2024-01-01', '2024-12-31')">Donaciones por Intervalo</button>-->
+
+  <table mat-table [dataSource]="ecoRecaudacionData" class="mat-elevation-z8">
+    <ng-container matColumnDef="cant">
+      <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
+      <td mat-cell *matCellDef="let element"> {{element.cant}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="suma">
+      <th mat-header-cell *matHeaderCellDef> Monto Recaudado </th>
+      <td mat-cell *matCellDef="let element"> {{element.suma}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['cant', 'suma']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['cant', 'suma'];"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+</div>
+

@@ -22,20 +22,6 @@ import {MatSelect} from '@angular/material/select';
   styleUrl: './login.component.css'
 })
 export default class LoginComponent {
-  // username: string = '';
-  // password: string = '';
-  //
-  // constructor(private router: Router) {}
-  //
-  // login(): void {
-  //   // Simula el inicio de sesión estableciendo un token en localStorage
-  //   if (this.username && this.password) {  // Puedes agregar una validación más compleja aquí
-  //     localStorage.setItem('token', 'userToken'); // Guarda un token en el localStorage
-  //     this.router.navigate(['/dashboard']); // Redirige al Dashboard después del login
-  //   } else {
-  //     alert('Por favor ingresa un usuario y una contraseña válidos');
-  //   }
-  // }
   username: string = '';
   password: string = '';
   router: Router = inject(Router);
@@ -47,15 +33,15 @@ export default class LoginComponent {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
-    })
+    });
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token')!=null){
+    if(localStorage.getItem('token') != null) {
       localStorage.removeItem('token');
       console.log("Token eliminado");
     }
-    this.loadForm()
+    this.loadForm();
   }
 
   loadForm(): void {
@@ -64,22 +50,80 @@ export default class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const requestDto: RequestDto = new RequestDto()
+      const requestDto: RequestDto = new RequestDto();
       requestDto.username = this.loginForm.value.username;
       requestDto.password = this.loginForm.value.password;
-      let responseDTO: ResponseDto = new ResponseDto();
+
       this.loginService.login(requestDto).subscribe({
         next: (data: ResponseDto): void => {
           console.log("Login response ROLs:", data.roles);
-          console.log("Login response ROL:", data.roles[0]);
-          localStorage.setItem('rol', data.roles[0]);
+          const userRole = data.roles[0];
+          localStorage.setItem('rol', userRole);
+
+          // Verificar el rol y redirigir en consecuencia
+          if (userRole === 'ROLE_ADMIN') {
+            this.router.navigate(['/admin-dashboard']); // Redirigir a la pantalla del administrador
+          } else {
+            this.router.navigate(['/dashboard/home']); // Redirigir a la pantalla general
+          }
+        },
+        error: (error) => {
+          console.error("Error en el login:", error);
+          alert("Error en el login");
         }
-      })
-      alert("Login ok!")
-      this.router.navigate(['/dashboard/home'])
+      });
     } else {
-      alert("Formulario no valido!")
+      alert("Formulario no valido!");
       console.log("Formulario no valido");
     }
   }
 }
+// export default class LoginComponent {
+//
+//   username: string = '';
+//   password: string = '';
+//   router: Router = inject(Router);
+//   loginForm: FormGroup;
+//   fb = inject(FormBuilder);
+//   loginService: LoginService = inject(LoginService);
+//
+//   constructor() {
+//     this.loginForm = this.fb.group({
+//       username: ['', Validators.required],
+//       password: ['', Validators.required],
+//     })
+//   }
+//
+//   ngOnInit() {
+//     if(localStorage.getItem('token')!=null){
+//       localStorage.removeItem('token');
+//       console.log("Token eliminado");
+//     }
+//     this.loadForm()
+//   }
+//
+//   loadForm(): void {
+//     console.log("Form");
+//   }
+//
+//   onSubmit() {
+//     if (this.loginForm.valid) {
+//       const requestDto: RequestDto = new RequestDto()
+//       requestDto.username = this.loginForm.value.username;
+//       requestDto.password = this.loginForm.value.password;
+//       let responseDTO: ResponseDto = new ResponseDto();
+//       this.loginService.login(requestDto).subscribe({
+//         next: (data: ResponseDto): void => {
+//           console.log("Login response ROLs:", data.roles);
+//           console.log("Login response ROL:", data.roles[0]);
+//           localStorage.setItem('rol', data.roles[0]);
+//         }
+//       })
+//       alert("Login ok!")
+//       this.router.navigate(['/dashboard/home'])
+//     } else {
+//       alert("Formulario no valido!")
+//       console.log("Formulario no valido");
+//     }
+//   }
+// }

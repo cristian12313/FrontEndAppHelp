@@ -27,6 +27,7 @@ import {TipousuarioListarComponent} from './componente/tipousuario-listar/tipous
 import {TipousuarioNuevoEditComponent} from './componente/tipousuario-nuevo-edit/tipousuario-nuevo-edit.component';
 import {UsuarioListarComponent} from './componente/usuario-listar/usuario-listar.component';
 import {UsuarioNuevoEditComponent} from './componente/usuario-nuevo-edit/usuario-nuevo-edit.component';
+import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   // Ruta para redirigir a login si no está autenticado
@@ -34,6 +35,10 @@ export const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadComponent: () => import('./authentication/login/login.component') },
+
+//// Ruta para admin que está autenticado
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
+
 
   // Rutas para dashboard
   {

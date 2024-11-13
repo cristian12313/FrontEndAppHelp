@@ -4,7 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Donacion} from '../model/donacion';
 import {Campania} from '../model/campania';
-import {Departamento} from '../model/departamento';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,11 @@ export class DonacionService {
   getList(): Observable<Donacion[]>{
     return this.listaCambio.asObservable();
   }
+
+  // CONSULTAS
+// Llamada para obtener las donaciones económicas por campaña
+  listarDonacionesEcoRecaudacionPorCampania(): Observable<any[]> {
+    return this.http.get<any[]>(this.url + "/donacionesEcoRecaudacionPorCampania/");
+  }
+
 }

@@ -1,0 +1,47 @@
+
+.toolbar-item-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar {
+  background-color: #3f51b5; /* Cambia el color por el que prefieras */
+  color: white; /* Cambia el color del texto si es necesario */
+}
+.material-icons{
+  color: coral;
+}
+
+.app-container {
+  height: 90%;
+  margin: 0;
+}
+.app-sidenav {
+  width: 230px;
+}
+
+
+/*list*/
+.app-sidenav-content {
+  display: flex;
+  width: 100%;   /* Asegura que el contenedor ocupe todo el espacio disponible */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-central {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 35px;
+  color: #fa5919;
+}
+
+.eco-recaudacion-section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .eco-recaudacion-section {
+    width: 95%;
+  }
+}
