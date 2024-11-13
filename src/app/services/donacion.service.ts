@@ -45,5 +45,9 @@ export class DonacionService {
   listarDonacionesEcoRecaudacionPorCampania(): Observable<any[]> {
     return this.http.get<any[]>(this.url + "/donacionesEcoRecaudacionPorCampania/");
   }
+  // Método para obtener donaciones por campaña
+  getDonacionesPorCampania(pCampania: string): Observable<any[]> {
+    return this.http.get<any[]>(this.url +"/donacionesPorCampaniaOrdFecha/${pCampania}");
+  }
 
 }

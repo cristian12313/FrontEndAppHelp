@@ -11,7 +11,7 @@ import {MatTooltip} from '@angular/material/tooltip';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {DonacionService} from '../services/donacion.service';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {Donacion} from '../model/donacion';
 import {
   MatCell, MatCellDef,
@@ -58,13 +58,18 @@ import {MatPaginator} from '@angular/material/paginator';
     MatCellDef,
     MatRowDef,
     MatPaginator,
-    MatButton
+    MatButton,
+    NgIf
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent implements OnInit{
   ecoRecaudacionData: any[] = [];
+  donacionesPorCampania: any[] = [];
+  // Variables para controlar la visibilidad de las tablas
+  mostrarRecaudacionEconomica = false;
+  mostrarDonacionesPorCampania = false;
 
   // Inyectamos ambos servicios en un único constructor
   constructor(
@@ -72,17 +77,26 @@ export class AdminDashboardComponent implements OnInit{
     private authService: AuthService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     this.getEcoRecaudacionData();
   }
-
   getEcoRecaudacionData(): void {
     this.donacionService.listarDonacionesEcoRecaudacionPorCampania().subscribe((data) => {
       this.ecoRecaudacionData = data;
+      // Mostrar solo la tabla de Recaudación Económica
+      this.mostrarRecaudacionEconomica = true;
+      this.mostrarDonacionesPorCampania = false;
     });
   }
-
+  // Método que se llama al hacer clic en el botón
+  getDonacionesPorCampania(pCampania: string): void {
+    this.donacionService.getDonacionesPorCampania(pCampania).subscribe((data) => {
+      this.donacionesPorCampania = data;
+      // Mostrar solo la tabla de Donaciones por Campaña
+      this.mostrarRecaudacionEconomica = false;
+      this.mostrarDonacionesPorCampania = true;
+    });
+  }
   //Método de logout
   logout(): void {
     this.authService.logout(); // Llama al servicio de logout

@@ -37,7 +37,7 @@ export const routes: Routes = [
   { path: 'login', loadComponent: () => import('./authentication/login/login.component') },
 
 //// Ruta para admin que está autenticado
-  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard]},
 
 
   // Rutas para dashboard
