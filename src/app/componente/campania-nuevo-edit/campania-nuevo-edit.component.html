@@ -25,6 +25,25 @@
         <input matInput formControlName="ubicacion" placeholder="Ingrese su ubicacion" />
       </mat-form-field>
 
+      <!--    CUENTA BANCARIA  manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Cuenta Bancaria</mat-label>
+        <mat-select formControlName="cuentabancaria" [(value)]="idCuentaSeleccionado" required>
+          <mat-option *ngFor="let a of lista10" [value]="a.idCuentaBanc">
+            {{a.nombreBanco}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--  TIPO BENEFICIARIO manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo Beneficiario</mat-label>
+        <mat-select formControlName="tipobeneficiario" [(value)]="idTipoBeneficiarioSeleccionado" required>
+          <mat-option *ngFor="let a of lista11" [value]="a.idTipobene">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
 
       <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>

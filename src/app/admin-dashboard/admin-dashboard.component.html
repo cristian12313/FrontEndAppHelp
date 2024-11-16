@@ -24,8 +24,17 @@
   </mat-menu>
 </mat-toolbar>
 
+<body>
 <div class="eco-recaudacion-section">
-  <h2 class="titulo-central">CONSULTAS</h2>
+  <div class="campanas-sidebar">
+    <h2>Campañas</h2>
+
+  </div>
+
+  <div class="contenido-central">
+    <div class="header-campania">
+      <h2 class="titulo-central">CONSULTAS</h2>
+    </div>
   <div class="formulario-container">
     <div class="formulario-inline">
       <mat-form-field appearance="fill" class="campo-inline">
@@ -44,10 +53,10 @@
       <button mat-raised-button color="accent" (click)="getDonacionesPorCampania(nombreCampania)">Buscar Donaciones</button>
     </div>
   </div>
-  <div class="botones-container">
+  <div class="botones-consulta">
     <button mat-raised-button color="primary" (click)="getEcoRecaudacionData()">Recaudación Económica</button>
   </div>
-  <div class="botones-container">
+  <div class="botones-consulta">
     <button mat-raised-button color="primary" (click)="getDonacionesPorIntervalo('2023-01-01', '2025-01-01')">Donaciones por Intervalo</button>
   </div>
 
@@ -109,5 +118,6 @@
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
 </div>
-
+</body>

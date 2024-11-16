@@ -123,7 +123,7 @@ export class AdminDashboardComponent implements OnInit{
   nombreEstado: string = ''; // Variable para almacenar el nombre de la campaña ingresado por el usuario
   getDonacionesPorEstado(pEstado: string): void {
     if (!pEstado.trim()) {
-      alert('Por favor, ingrese un nombre de campaña válido.');
+      alert('Por favor, ingrese un nombre de estado válido.');
       return;
     }
     this.donacionService.getDonacionesPorEstado(pEstado).subscribe((data) => {
