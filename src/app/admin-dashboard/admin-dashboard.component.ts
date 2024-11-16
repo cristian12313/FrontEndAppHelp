@@ -73,7 +73,6 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent implements OnInit{
-
   ecoRecaudacionData: any[] = [];
   donacionesPorCampania: any[] = [];
   donacionesPorEstado: any[] = [];
