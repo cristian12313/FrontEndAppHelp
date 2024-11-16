@@ -55,6 +55,16 @@
         </mat-select>
       </mat-form-field>
 
+      <!--    Estado  manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado" [(value)]="idEstadoSeleccionado" required>
+          <mat-option *ngFor="let a of lista2" [value]="a.idEstado">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
     </form>
   </mat-card-content>

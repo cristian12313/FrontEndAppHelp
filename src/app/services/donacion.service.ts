@@ -47,7 +47,15 @@ export class DonacionService {
   }
   // Método para obtener donaciones por campaña
   getDonacionesPorCampania(pCampania: string): Observable<any[]> {
-    return this.http.get<any[]>(this.url +"/donacionesPorCampaniaOrdFecha/${pCampania}");
+    return this.http.get<any[]>(`${this.url}/donacionesPorCampaniaOrdFecha/${pCampania}`);
   }
-
+// Método para obtener donaciones por estado
+  getDonacionesPorEstado(pEstado: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/donacionesPorEstadoOrdFecha/${pEstado}`);
+  }
+// Método para obtener donaciones por tipo en un intervalo de fechas
+  getDonacionesPorIntervalo(pFechaInicio: string, pFechaFin: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/donacionesPorTipoEnIntervalo/${pFechaInicio},${pFechaFin}`
+    );
+  }
 }

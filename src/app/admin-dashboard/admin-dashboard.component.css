@@ -45,3 +45,48 @@
     width: 95%;
   }
 }
+.eco-recaudacion-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 24px; /* Espaciado entre secciones */
+}
+
+.titulo-central {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.botones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaciado entre botones */
+  width: 100%;
+  max-width: 400px;
+}
+
+.formulario-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.formulario-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espaciado entre el campo de entrada y el botón */
+}
+
+.campo-inline {
+  flex: 1; /* El campo de entrada ocupará todo el espacio restante */
+}
+
+mat-form-field {
+  width: 100%; /* Se asegura de que el campo de entrada ocupe el espacio disponible */
+}
+
+button {
+  font-size: 16px;
+}
+
