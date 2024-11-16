@@ -23,16 +23,11 @@
     </button>
   </mat-menu>
 </mat-toolbar>
-<body>
-  <div class="eco-recaudacion-section">
-    <div class="campanas-sidebar">
-      <h2>Campañas</h2>
 
 <body>
 <div class="eco-recaudacion-section">
   <div class="campanas-sidebar">
     <h2>Campañas</h2>
-
   </div>
 
   <div class="contenido-central">
@@ -125,51 +120,4 @@
   </div>
 </div>
 </body>
-=======
-    </div>
 
-    <div class="contenido-central">
-      <div class="header-campania">
-        <h2 class="titulo-central">CONSULTAS</h2>
-      </div>
-
-      <div class="botones-consulta">
-        <button mat-raised-button color="primary" (click)="getEcoRecaudacionData()">Recaudación Económica</button>
-        <button mat-raised-button color="accent" (click)="getDonacionesPorCampania('Campaña1')">Donaciones por Campaña</button>
-      </div>
-
-
-
-      <!-- Tabla de Recaudación Económica -->
-      <table *ngIf="mostrarRecaudacionEconomica" mat-table [dataSource]="ecoRecaudacionData" class="mat-elevation-z8">
-        <ng-container matColumnDef="cant">
-          <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
-          <td mat-cell *matCellDef="let element"> {{element.cant}} </td>
-        </ng-container>
-        <ng-container matColumnDef="suma">
-          <th mat-header-cell *matHeaderCellDef> Monto Recaudado </th>
-          <td mat-cell *matCellDef="let element"> {{element.suma}} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="['cant', 'suma']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['cant', 'suma'];"></tr>
-      </table>
-      <!-- Tabla de Donaciones por Campaña -->
-      <table *ngIf="mostrarDonacionesPorCampania" mat-table [dataSource]="donacionesPorCampania" class="mat-elevation-z8">
-        <ng-container matColumnDef="cantDonaciones">
-          <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
-          <td mat-cell *matCellDef="let element"> {{element.cantDonaciones}} </td>
-        </ng-container>
-        <ng-container matColumnDef="tipoDonacion">
-          <th mat-header-cell *matHeaderCellDef> Tipo de Donación </th>
-          <td mat-cell *matCellDef="let element"> {{element.tipoDonacion}} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="['cantDonaciones', 'tipoDonacion']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['cantDonaciones', 'tipoDonacion'];"></tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
-    </div>
-  </div>
-</body>
-
->>>>>>> 09dfa9be8c02d81b32af08287fc977c13df1dee0
