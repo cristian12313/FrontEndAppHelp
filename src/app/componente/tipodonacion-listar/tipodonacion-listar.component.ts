@@ -17,6 +17,8 @@ import {Departamento} from '../../model/departamento';
 import {DepartamentoService} from '../../services/departamento.service';
 import {Tipodonacion} from '../../model/tipodonacion';
 import {TipodonacionService} from '../../services/tipodonacion.service';
+import {ConfirmDialogoComponent} from '../campania-listar/confirm-dialogo/confirm-dialogo.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tipodonacion-listar',
@@ -44,12 +46,13 @@ import {TipodonacionService} from '../../services/tipodonacion.service';
 })
 export class TipodonacionListarComponent {
   lista:Tipodonacion[]=[];
-  displayedColumns: string[]=['idTipodonacion','nombre','accion01'];
+  displayedColumns: string[]=['idTipodonacion','nombre','accion01', 'accion02'];
   dataSource:MatTableDataSource<Tipodonacion>=new MatTableDataSource<Tipodonacion>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   tipodonacionService:TipodonacionService=inject(TipodonacionService);
   router:Router=inject(Router);
+  dialog = inject(MatDialog)
   constructor()  {
     console.log("Load constructor!")
   }
@@ -66,6 +69,22 @@ export class TipodonacionListarComponent {
     this.tipodonacionService.list().subscribe({
       next: (data) => this.dataSource.data=data,
       error: (error) => console.log("Error error error",error),
+    });
+  }
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogoComponent);
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){
+        this.delete(id);
+      }else{
+        console.log("Diálogo respondió no eliminar");
+      }
+    });
+  }
+
+  delete(id: number) {
+    this.tipodonacionService.delete(id).subscribe(()=>{
+      this.loadLista()
     });
   }
 }

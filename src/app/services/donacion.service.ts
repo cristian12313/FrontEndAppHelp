@@ -5,17 +5,21 @@ import {Observable, Subject} from 'rxjs';
 import {Donacion} from '../model/donacion';
 import {Campania} from '../model/campania';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class DonacionService {
-  private url=environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http:HttpClient=inject(HttpClient);
   private listaCambio : Subject<Donacion[]> = new Subject<Donacion[]>();
 
   constructor() { }
   list():Observable<any> {
-    return this.http.get(this.url+"/donaciones");
+    return this.http.get<Donacion[]>(this.url+"/donaciones");
   }
   listID(id: number):Observable<any> {
     return this.http.get<Campania[]>(this.url+"/donacion/"+ id);
@@ -35,4 +39,15 @@ export class DonacionService {
   getList(): Observable<Donacion[]>{
     return this.listaCambio.asObservable();
   }
+
+  // CONSULTAS
+// Llamada para obtener las donaciones económicas por campaña
+  listarDonacionesEcoRecaudacionPorCampania(): Observable<any[]> {
+    return this.http.get<any[]>(this.url + "/donacionesEcoRecaudacionPorCampania/");
+  }
+  // Método para obtener donaciones por campaña
+  getDonacionesPorCampania(pCampania: string): Observable<any[]> {
+    return this.http.get<any[]>(this.url +"/donacionesPorCampaniaOrdFecha/${pCampania}");
+  }
+
 }

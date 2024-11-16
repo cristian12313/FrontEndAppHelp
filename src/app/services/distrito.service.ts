@@ -3,23 +3,27 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environment/environment';
 import {Distrito} from '../model/distrito';
 import {Observable, Subject} from 'rxjs';
+import {Campania} from '../model/campania';
+import {Departamento} from '../model/departamento';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DistritoService {
-  private url = environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http: HttpClient = inject(HttpClient);
   private listaCambio: Subject<Distrito[]> = new Subject<Distrito[]>();
 
   constructor() { }
   list(): Observable<any> {
-    return this.http.get(this.url +"/distritos");
+    return this.http.get<Distrito[]>(this.url +"/distritos");
   }
 
   listID(id: number): Observable<any> {
-    return this.http.get(this.url +"/distrito/"+id);
+    return this.http.get<Departamento[]>(this.url +"/distrito/"+id);
   }
 
   insert(distrito: Distrito): Observable<any> {

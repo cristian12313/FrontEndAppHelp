@@ -36,7 +36,8 @@ import {NgForOf} from '@angular/common';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSelectModule, NgForOf
+    NgForOf,
+    MatSelectModule
   ],
   templateUrl: './distrito-nuevodistrito-edit.component.html',
   styleUrl: './distrito-nuevodistrito-edit.component.css'
@@ -55,6 +56,7 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
   public idDepartamentoSeleccionado: number = 0;
   lista: Departamento[] = [];
   departamento: Departamento = new Departamento();
+
   constructor() {
     console.log("Carga constructor de Form")
     this.distritoForm = this.fb.group({
@@ -73,6 +75,14 @@ export class DistritoNuevodistritoEditComponent implements OnInit{
       this.edicion = data['id'] != null;
       this.cargarForm();
     });
+    //
+    this.loadLista();
+  }
+  loadLista(): void {
+    this.departamentoService.list().subscribe({
+      next: (data) => this.lista = data,
+      error: (err) => console.error("Error en consulta", err)
+    })
   }
   private cargarForm() {
     if(this.edicion){

@@ -13,10 +13,10 @@ import {MatButton} from '@angular/material/button';
 import {MatPaginator} from '@angular/material/paginator';
 import {Router, RouterLink} from '@angular/router';
 import {DatePipe} from '@angular/common';
-import {Departamento} from '../../model/departamento';
-import {DepartamentoService} from '../../services/departamento.service';
 import {Estado} from '../../model/estados';
 import {EstadoService} from '../../services/estado.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmDialogoComponent} from '../campania-listar/confirm-dialogo/confirm-dialogo.component';
 
 @Component({
   selector: 'app-estado-listar',
@@ -44,12 +44,13 @@ import {EstadoService} from '../../services/estado.service';
 })
 export class EstadoListarComponent {
   lista:Estado[]=[];
-  displayedColumns: string[]=['idEstado','nombre','accion01'];
+  displayedColumns: string[]=['idEstado','nombre','accion01', 'accion02'];
   dataSource:MatTableDataSource<Estado>=new MatTableDataSource<Estado>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   estadoService:EstadoService=inject(EstadoService);
   router:Router=inject(Router);
+  dialog = inject(MatDialog)
   constructor()  {
     console.log("Load constructor!")
   }
@@ -66,6 +67,22 @@ export class EstadoListarComponent {
     this.estadoService.list().subscribe({
       next: (data) => this.dataSource.data=data,
       error: (error) => console.log("Error error error",error),
+    });
+  }
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogoComponent);
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){
+        this.delete(id);
+      }else{
+        console.log("Diálogo respondió no eliminar");
+      }
+    });
+  }
+
+  delete(id: number) {
+    this.estadoService.delete(id).subscribe(()=>{
+      this.loadLista()
     });
   }
 }

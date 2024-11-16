@@ -9,7 +9,9 @@ import {Tipodonacion} from '../model/tipodonacion';
   providedIn: 'root'
 })
 export class TipodonacionService {
-  private url = environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
   private http: HttpClient = inject(HttpClient);
   private listaCambio: Subject<Tipodonacion[]> = new Subject<Tipodonacion[]>();
 
@@ -17,11 +19,11 @@ export class TipodonacionService {
   }
 
   list(): Observable<any> {
-    return this.http.get(this.url + "/tipoDonaciones");
+    return this.http.get<Tipodonacion[]>(this.url + "/tipoDonaciones");
   }
 
   listID(id: number): Observable<any> {
-    return this.http.get(this.url + "/tipoDonacion/" + id);
+    return this.http.get<Tipodonacion[]>(this.url + "/tipoDonacion/" + id);
   }
 
   insert(tipodonacion: Tipodonacion): Observable<any> {

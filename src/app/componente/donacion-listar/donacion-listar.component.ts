@@ -44,7 +44,7 @@ import {ConfirmDialogoComponent} from './confirm-dialogo/confirm-dialogo.compone
 })
 export class DonacionListarComponent implements OnInit, AfterViewInit{
   lista:Donacion[]=[];
-  displayedColumns: string[]=['idDonacion','ubicacion','monto','fechaInicio','fechaFin','detalle', 'campania', 'accion01', 'accion02'];
+  displayedColumns: string[]=['idDonacion','ubicacion','monto','fechaInicio','fechaFin','detalle', 'campania','tipodonacion', 'accion01', 'accion02'];
   dataSource:MatTableDataSource<Donacion>=new MatTableDataSource<Donacion>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

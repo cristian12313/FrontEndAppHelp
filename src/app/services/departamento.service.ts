@@ -9,7 +9,10 @@ import {Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class DepartamentoService {
-  private url = environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
+
   private http: HttpClient = inject(HttpClient);
   private listaCambio: Subject<Departamento[]> = new Subject<Departamento[]>();
 
@@ -17,11 +20,11 @@ export class DepartamentoService {
   }
 
   list(): Observable<any> {
-    return this.http.get(this.url + "/departamentos");
+    return this.http.get<Departamento[]>(this.url + "/departamentos");
   }
 
   listID(id: number): Observable<any> {
-    return this.http.get(this.url + "/departamento/" + id);
+    return this.http.get<Departamento[]>(this.url + "/departamento/" + id);
   }
 
   insert(departamento: Departamento): Observable<any> {

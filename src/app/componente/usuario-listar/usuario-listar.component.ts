@@ -44,7 +44,7 @@ import {UsuarioService} from '../../services/usuario.service';
 })
 export class UsuarioListarComponent implements OnInit, AfterViewInit{
   lista:Usuario[]=[];
-  displayedColumns: string[]=['idUsuario','username','password','apellidos','correo','dni', 'telefono', 'tipousuario', 'accion01'];
+  displayedColumns: string[]=['idUsuario','username','password','apellidos','correo','dni', 'telefono', 'tipousuario', 'accion01', 'accion02'];
   dataSource:MatTableDataSource<Usuario>=new MatTableDataSource<Usuario>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

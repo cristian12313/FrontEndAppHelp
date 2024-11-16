@@ -81,7 +81,7 @@ export class TipousuarioNuevoEditComponent implements OnInit{
     if(this.tipousuarioForm.valid){
       const tipousuario:Tipousuario = new Tipousuario();
       tipousuario.idTipousuario = this.id;
-      tipousuario.nombre = this.tipousuarioForm.value.culminado;
+      tipousuario.nombre = this.tipousuarioForm.value.nombre;
       tipousuario.descripcion = this.tipousuarioForm.value.descripcion;
       if(!this.edicion){
         this.tipousuarioService.insert(tipousuario).subscribe((data:Object): void => {
