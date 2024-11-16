@@ -5,6 +5,30 @@
   gap: 12px; /* Espaciado entre botones */
   width: 100%;
   max-width: 400px;
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.eco-recaudacion-section {
+  display: flex;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.app-sidenav-content {
+  display: flex;
+  width: 100%;   /* Asegura que el contenedor ocupe todo el espacio disponible */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+.material-icons{
+  color: coral;
 }
 
 .formulario-container {
@@ -36,6 +60,31 @@ body{
   margin: 0;
   padding: 0;
   background-color: #ffffff;
+
+}
+.app-sidenav {
+  width: 230px;
+}
+.toolbar-item-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar {
+  background-color: black; /* Cambia el color por el que prefieras */
+  color: white; /* Cambia el color del texto si es necesario */
+}
+.campanas-sidebar {
+  background-image: url('../img/mapa1.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 580px;
+  background-color: #F5F5F5;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  margin-top: 0;
+  border-radius: 8px;
 }
 
 .eco-recaudacion-section {
@@ -132,6 +181,37 @@ body{
   display: block;
   margin-top: 0;
   border-radius: 8px;
+}
+
+.campanas-sidebar h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contenido-central {
+  width: 50%;
+  padding: 20px;
+  background-color: #FF9090;
+  border-radius: 8px;
+  height: 580px;
+}
+
+.header-campania {
+  background-image: url('../img/logo.png');
+  background-size: 120px;
+  background-position: 20px;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: block;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo-central {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
 }
 
 .campanas-sidebar h2 {
