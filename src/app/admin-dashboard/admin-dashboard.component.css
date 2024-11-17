@@ -1,4 +1,15 @@
 
+.mat-sidenav {
+  width: 300px;  /* Cambia este valor para ajustar el ancho */
+}
+.app-sidenav-container {
+  width: 300px;  /* Ajusta el ancho del contenedor del sidenav */
+}
+mat-sidenav-container {
+  height: 100%;
+  margin: 0;
+}
+
 .botones-container {
   display: flex;
   flex-direction: column;
@@ -10,7 +21,7 @@ body{
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: none;
 }
 
 .eco-recaudacion-section {
@@ -56,14 +67,6 @@ button {
   font-size: 16px;
 }
 
-
-body{
-  height: 100%;
-  margin: 0;
-
-  padding: 0;
-  background-color: #ffffff;
-}
 .app-sidenav {
   width: 230px;
 }
@@ -73,41 +76,6 @@ body{
 .mat-toolbar {
   background-color: #3f51b5; /* Cambia el color por el que prefieras */
   color: white; /* Cambia el color del texto si es necesario */
-}
-.material-icons{
-  color: coral;
-}
-
-.campanas-sidebar {
-  background-image: url('../img/mapa1.png');
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  width: 50%;
-  height: 580px;
-  background-color: #F5F5F5;
-  padding: 20px;
-  text-align: center;
-  display: block;
-  margin-top: 0;
-  border-radius: 8px;
-}
-
-
-.eco-recaudacion-section {
-  display: flex;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: stretch;
-}
-.app-sidenav-content {
-  display: flex;
-  width: 100%;   /* Asegura que el contenedor ocupe todo el espacio disponible */
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-
 }
 
 .app-container {
@@ -127,22 +95,6 @@ body{
 
 }
 
-.eco-recaudacion-section {
-  display: flex;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: stretch;
-}
-.app-sidenav-content {
-  display: flex;
-  width: 100%;   /* Asegura que el contenedor ocupe todo el espacio disponible */
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-
-}
-
 .campanas-sidebar {
   background-image: url('../img/mapa1.png');
   background-size: cover;
@@ -157,11 +109,7 @@ body{
   margin-top: 0;
   border-radius: 8px;
 }
-.app-container {
-  height: 90%;
-  margin: 0;
 
-}
 .app-sidenav {
   width: 230px;
 }
@@ -213,39 +161,6 @@ body{
   font-weight: bold;
   color: #333;
 }
-
-
-.campanas-sidebar h2 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.contenido-central {
-  width: 50%;
-  padding: 20px;
-  background-color: #FF9090;
-  border-radius: 8px;
-  height: 580px;
-}
-
-.header-campania {
-  background-image: url('../img/logo.png');
-  background-size: 120px;
-  background-position: 20px;
-  background-repeat: no-repeat;
-  text-align: center;
-  display: block;
-  align-items: center;
-  gap: 10px;
-}
-
-.titulo-central {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-}
-
 
 .botones-consulta {
   display: flex;
