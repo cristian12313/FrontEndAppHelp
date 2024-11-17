@@ -4,6 +4,11 @@
   </button>
   <span>APP HELP</span>
   <span class="toolbar-item-spacer"></span>
+  <!-- Botón para regresar al dashboard -->
+  <button mat-icon-button matTooltip="Go to Dashboard" (click)="goToDashboard()">
+    <mat-icon>dashboard</mat-icon>
+  </button>
+
   <button mat-icon-button matTooltip="Share">
     <mat-icon>share</mat-icon>
   </button>
@@ -32,7 +37,7 @@
 <div class="eco-recaudacion-section">
 
   <div class="campanas-sidebar">
-    <h2>Campañas</h2>
+    <h2>HISTORIAL</h2>
   </div>
   <div class="contenido-central">
     <div class="header-campania">

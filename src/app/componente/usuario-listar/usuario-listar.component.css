@@ -1,0 +1,87 @@
+/* Contenedor general de la tabla */
+.mat-elevation-z8 {
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Evita que los bordes sobresalgan */
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+/* Encabezados de la tabla */
+.mat-header-cell {
+  font-weight: bold; /* Texto en negrita */
+  font-size: 16px; /* Tamaño de fuente */
+  background-color: #FF9090; /* Color de fondo rojo pastel */
+  color: #ffffff; /* Texto blanco */
+  text-align: center; /* Centrar texto */
+  padding: 10px; /* Espaciado interno */
+  border-bottom: 2px solid #333; /* Línea inferior */
+}
+
+/* Celdas de la tabla */
+.mat-cell {
+  font-size: 14px; /* Tamaño de fuente */
+  color: #333333; /* Texto gris oscuro */
+  text-align: center; /* Centrar texto */
+  padding: 10px; /* Espaciado interno */
+  border-bottom: 1px solid #ccc; /* Línea inferior */
+}
+
+/* Colores alternos para filas */
+.mat-row:nth-child(odd) {
+  background-color: #F5F5F5; /* Color de fondo gris claro */
+}
+
+.mat-row:nth-child(even) {
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+/* Botones */
+button.mat-raised-button {
+  font-size: 14px; /* Tamaño de fuente */
+  text-transform: none; /* Sin mayúsculas automáticas */
+  margin: 0 5px; /* Espaciado entre botones */
+  display: flex; /* Asegura alineación correcta */
+  align-items: center; /* Centra el icono y texto */
+  gap: 5px; /* Espaciado entre icono y texto */
+}
+
+
+/* Paginador */
+mat-paginator {
+  background-color: #FF9090; /* Fondo rojo pastel */
+  color: #ffffff; /* Texto blanco */
+  border-top: 1px solid #333; /* Línea superior */
+  padding: 10px; /* Espaciado interno */
+}
+
+mat-paginator .mat-paginator-range-label {
+  font-weight: bold;
+}
+
+mat-paginator .mat-icon-button {
+  color: #ffffff; /* Iconos blancos */
+}
+
+mat-paginator .mat-button-base {
+  color: #ffffff; /* Botones blancos */
+}
+
+/* Iconos de Material */
+.material-icons {
+  font-size: 18px; /* Tamaño del icono */
+  color: inherit; /* Hereda el color del botón */
+}
+
+/* Respuesta a pantallas pequeñas */
+@media (max-width: 768px) {
+  .mat-header-cell, .mat-cell {
+    font-size: 12px; /* Reduce tamaño de texto */
+    padding: 8px; /* Reduce espaciado */
+  }
+
+  button.mat-raised-button {
+    font-size: 12px; /* Reduce tamaño del botón */
+    gap: 3px; /* Reduce espacio entre icono y texto */
+  }
+}

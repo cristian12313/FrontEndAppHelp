@@ -37,8 +37,11 @@ import {AuthService} from '../auth.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  constructor(private authService: AuthService) {}
-
+  constructor(private authService: AuthService, private router:Router) {}
+  //Metodo de dashboard
+  goToDashboard(): void {
+    this.router.navigate(['/admin-dashboard']); // Cambia '/dashboard' por la ruta que hayas definido para el componente dashboard
+  }
   logout(): void {
     this.authService.logout(); // Llama a la función de logout del servicio
   }

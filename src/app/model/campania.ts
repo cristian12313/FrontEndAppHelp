@@ -1,5 +1,6 @@
 import {Cuentabancaria} from './cuentabancaria';
 import {Tipobeneficiario} from './tipobeneficiario';
+import {Tipodonacion} from './tipodonacion';
 
 export class Campania {
   idCampania:number;
@@ -9,4 +10,5 @@ export class Campania {
   ubicacion:string;
   cuentabancaria:Cuentabancaria;
   tipobeneficiario:Tipobeneficiario;
+  tipodonacion:Tipodonacion;
 }

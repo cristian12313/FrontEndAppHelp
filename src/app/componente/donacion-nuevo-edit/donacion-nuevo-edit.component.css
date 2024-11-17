@@ -1,9 +1,158 @@
-.example-card {
-  margin: 0 auto;
-  width: 600px;
+/* TITULO CAMPAÑAS */
+.titulo-campanas {
+  font-weight: bold; /* Negrita */
+  font-size: 50px; /* Tamaño más grande */
 }
 
+/* CONTENEDOR DE FORMULARIOS */
 .form-container {
+  width: 95%; /* Ajusta el ancho del formulario */
+  max-width: 600px; /* Máximo ancho */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+  padding: 5px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* CONTENEDOR DE BOTONES */
+.botones-container {
   display: flex;
   flex-direction: column;
+  gap: 12px; /* Espaciado entre botones */
+  width: 100%;
+  max-width: 400px;
+}
+
+/* CONFIGURACIÓN GENERAL DEL BODY */
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; /* Color de fondo blanco */
+}
+
+/* SECCIÓN DE RECAUDACIÓN ECONÓMICA */
+.eco-recaudacion-section {
+  display: flex;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* SIDENAV */
+.app-sidenav {
+  width: 230px;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.app-container {
+  height: 90%;
+  margin: 0;
+}
+
+/* CONTENIDO DEL SIDENAV */
+.app-sidenav-content {
+  display: flex;
+  width: 100%; /* Asegura que el contenedor ocupe todo el espacio disponible */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MATERIALES */
+.material-icons {
+  color: coral;
+}
+
+/* FORMULARIOS INLINE */
+.formulario-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espaciado entre el campo de entrada y el botón */
+}
+
+.campo-inline {
+  flex: 1; /* El campo de entrada ocupará todo el espacio restante */
+}
+
+/* CAMPOS DE FORMULARIO */
+mat-form-field {
+  width: 100%; /* Se asegura de que el campo de entrada ocupe el espacio disponible */
+}
+
+/* BOTONES */
+button {
+  font-size: 16px;
+}
+
+/* SECCIÓN SIDEBAR CAMPAÑAS */
+.campanas-sidebar {
+  background-image: url('../../img/mapa1.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 580px;
+  background-color: #F5F5F5;
+  padding: 55px;
+  text-align: center;
+  display: block;
+  margin-top: 0;
+  border-radius: 8px;
+}
+
+.campanas-sidebar h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* CONTENIDO CENTRAL */
+.contenido-central {
+  width: 70%;
+  padding: 55px;
+  background-color: #FF9090;
+  border-radius: 8px;
+  height: 580px;
+}
+
+/* ENCABEZADO DE CAMPAÑAS */
+.header-campania {
+  background-image: url('../../img/logo.png');
+  background-size: 120px;
+  background-position: 20px;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: block;
+  align-items: center;
+  gap: 10px;
+}
+
+/* BOTONES DE CONSULTA */
+.botones-consulta {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* ESTILO DE TABLA */
+.mat-elevation-z8 {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* CONTENIDO DE TARJETAS */
+mat-card-content {
+  display: flex;
+  flex-direction: column; /* Acomoda los elementos en columna */
+  gap: 10px; /* Espaciado entre campos */
+}
+
+/* MEDIA QUERY PARA DISPOSITIVOS PEQUEÑOS */
+@media (max-width: 768px) {
+  .eco-recaudacion-section {
+    width: 80%;
+  }
 }
