@@ -1,11 +1,41 @@
 <h2>APP HELP</h2>
 <nav>
+<!--  <a [routerLink]="'/'">Home</a> |-->
+<!--  <a [routerLink]="'acerca'">Acerca</a> |-->
+<!--  <a [routerLink]="'campanias'">Campaña</a> |-->
+<!--  <a [routerLink]="'nuevo'">Nuevo</a> |-->
+<!--  <a [routerLink]="'donacion'">Donacion</a> |-->
+<!--  <a [routerLink]="'departamentos'">Departamentos</a> |-->
+<!--  <a [routerLink]="'nuevodepartamento'">Nuevo Departamento</a> |-->
+  <!-- Menú desplegable para Home -->
   <a [routerLink]="'/'">Home</a> |
+    <!-- Menú desplegable para Acerca -->
   <a [routerLink]="'acerca'">Acerca</a> |
-  <a [routerLink]="'campanias'">Campaña</a> |
-  <a [routerLink]="'nuevo'">Nuevo</a> |
-  <a [routerLink]="'donacion'">Donacion</a> |
-  <a [routerLink]="'cuentabancaria'">Cuenta Bancaraia</a> |
-  <a [routerLink]="'tipobeneficiario'">Tipo Beneficiario</a>
+  <!-- Menú desplegable para Campaña -->
+  <button mat-button [matMenuTriggerFor]="menuCampania">Campaña</button>
+  <mat-menu #menuCampania="matMenu">
+    <button mat-menu-item [routerLink]="'campanias'">Ver Campaña</button>
+    <button mat-menu-item [routerLink]="'nuevo'">Nuevo Campaña</button>
+  </mat-menu> |
+  <!-- Menú desplegable para Donacion -->
+  <button mat-button [matMenuTriggerFor]="menuDonacion">Donacion</button>
+  <mat-menu #menuDonacion="matMenu">
+    <button mat-menu-item [routerLink]="'donacion'">Ver Donacion</button>
+  </mat-menu> |
+  <!-- Menú desplegable para Departamentos -->
+  <button mat-button [matMenuTriggerFor]="menuDepartamentos">Departamentos</button>
+  <mat-menu #menuDepartamentos="matMenu">
+    <button mat-menu-item [routerLink]="'departamentos'">Ver Departamentos</button>
+    <button mat-menu-item [routerLink]="'nuevodepartamento'">Nuevo Departamento</button>
+  </mat-menu> |
+  <!-- Menú desplegable para Distrito -->
+  <button mat-button [matMenuTriggerFor]="menuDistrito">Distritos</button>
+  <mat-menu #menuDistrito="matMenu">
+    <button mat-menu-item [routerLink]="'distritos'">Ver Distritos</button>
+    <button mat-menu-item [routerLink]="'nuevodistrito'">Nuevo Distrito</button>
+  </mat-menu> |
 </nav>
 <router-outlet />
+
+
+
