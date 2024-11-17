@@ -8,9 +8,10 @@
         <input matInput formControlName="nombre" placeholder="Ingrese el nombre del distrito" />
       </mat-form-field>
 
+      <!--      manytoone-->
       <mat-form-field appearance="fill">
         <mat-label>Departamento</mat-label>
-        <mat-select formControlName="idDepartamento" [(value)]="idDepartamentoSeleccionado" required>
+        <mat-select formControlName="departamento" [(value)]="idDepartamentoSeleccionado" required>
           <mat-option *ngFor="let a of lista" [value]="a.idDepartamento">
             {{a.nombreDepartamento}}
           </mat-option>

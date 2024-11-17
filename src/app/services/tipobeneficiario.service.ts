@@ -1,29 +1,48 @@
 import {inject, Injectable} from '@angular/core';
 import {environment} from '../../environment/environment';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Tipobeneficiario} from '../model/tipobeneficiario';
+import {Departamento} from '../model/departamento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipobeneficiarioService {
-  private url=environment.apiUrl
-  private http:HttpClient=inject(HttpClient);
-  constructor() { }
-  list():Observable<any> {
-    return this.http.get(this.url+"/tipobeneficiarios");
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
+  private http: HttpClient = inject(HttpClient);
+  private listaCambio: Subject<Tipobeneficiario[]> = new Subject<Tipobeneficiario[]>();
+
+  constructor() {
   }
-  listID(id:number):Observable<any> {
-    return this.http.get(this.url+"/tipobeneficiario/"+id);
+
+  list(): Observable<any> {
+    return this.http.get<Tipobeneficiario[]>(this.url + "/tipobeneficiarios");
   }
-  insert(tipobeneficiario:Tipobeneficiario):Observable<any> {
-    return this.http.post(this.url+"/tipobeneficiario",tipobeneficiario);
+
+  listID(id: number): Observable<any> {
+    return this.http.get<Tipobeneficiario[]>(this.url + "/tipobeneficiario/" + id);
   }
-  update(tipobeneficiario:Tipobeneficiario):Observable<any> {
-    return this.http.put(this.url+"/tipobeneficiario",tipobeneficiario);
+
+  insert(tipobeneficiario: Tipobeneficiario): Observable<any> {
+    return this.http.post(this.url + "/tipobeneficiario", tipobeneficiario);
   }
-  delete(id:number):Observable<any> {
-    return this.http.delete(this.url+"/tipobeneficiario/"+id);
+
+  update(tipobeneficiario: Tipobeneficiario): Observable<any> {
+    return this.http.put(this.url + "/tipobeneficiario", tipobeneficiario);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.url + "/tipobeneficiario/" + id);
+  }
+
+  setList(listaNueva: Tipobeneficiario[]): void {
+    this.listaCambio.next(listaNueva);
+  }
+
+  getList(): Observable<Tipobeneficiario[]> {
+    return this.listaCambio.asObservable();
   }
 }

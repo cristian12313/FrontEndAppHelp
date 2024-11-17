@@ -1,0 +1,71 @@
+<mat-card class="example-card">
+  <mat-card-title>Formulario de Donacion</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="donacionForm" class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Ubicacion</mat-label>
+        <input matInput formControlName="ubicacion" placeholder="Ingrese su ubicacion" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Monto</mat-label>
+        <input matInput formControlName="monto" placeholder="Ingrese su monto" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fechaInicio"
+               placeholder="Seleccione su fecha de inicio" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Fin</mat-label>
+        <input matInput [matDatepicker]="pickerFin" formControlName="fechaFin"
+               placeholder="Seleccione su fecha de fin" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Detalle</mat-label>
+        <input matInput formControlName="detalle" placeholder="Ingrese su detalle" />
+      </mat-form-field>
+
+<!--    CAMPAÑA  manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Campaña</mat-label>
+        <mat-select formControlName="campania" [(value)]="idCampaniaSeleccionado" required>
+          <mat-option *ngFor="let a of lista" [value]="a.idCampania">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--    TIPO DONACION  manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo Donacion</mat-label>
+        <mat-select formControlName="tipodonacion" [(value)]="idTipoDonacionSeleccionado" required>
+          <mat-option *ngFor="let a of lista1" [value]="a.idTipodonacion">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--    Estado  manytoone-->
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado" [(value)]="idEstadoSeleccionado" required>
+          <mat-option *ngFor="let a of lista2" [value]="a.idEstado">
+            {{a.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
+    </form>
+  </mat-card-content>
+</mat-card>

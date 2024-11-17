@@ -1,4 +1,4 @@
-import {Component, inject, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
 import {Donacion} from '../../model/donacion';
 import {
   MatCell,
@@ -15,6 +15,8 @@ import {DonacionService} from '../../services/donacion.service';
 import {Router, RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
 import {DatePipe} from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmDialogoComponent} from './confirm-dialogo/confirm-dialogo.component';
 
 @Component({
   selector: 'app-donacion-listar',
@@ -40,14 +42,16 @@ import {DatePipe} from '@angular/common';
   templateUrl: './donacion-listar.component.html',
   styleUrl: './donacion-listar.component.css'
 })
-export class DonacionListarComponent {
-  lista:Donacion[];
-  displayedColumns: string[]=['idDonacion','ubicacion','monto','fechaInicio','fechaFin','detalle'];
+export class DonacionListarComponent implements OnInit, AfterViewInit{
+  lista:Donacion[]=[];
+  displayedColumns: string[]=['idDonacion','ubicacion','monto','fechaInicio','fechaFin','detalle', 'campania','tipodonacion','estado', 'accion01', 'accion02'];
   dataSource:MatTableDataSource<Donacion>=new MatTableDataSource<Donacion>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  donacionSerice: DonacionService=inject(DonacionService);
+  donacionService: DonacionService=inject(DonacionService);
   router:Router=inject(Router);
+  dialog = inject(MatDialog)
+
   constructor()  {
     console.log("Load constructor!")
   }
@@ -60,10 +64,28 @@ export class DonacionListarComponent {
     this.loadLista();
   }
 
-  private loadLista():void {
-    this.donacionSerice.list().subscribe({
+   loadLista():void {
+    this.donacionService.list().subscribe({
       next: (data) => this.dataSource.data=data,
-      error: (error) => console.log("Error en nose",error),
+      error: (error) => console.log("Error",error),
+    });
+  }
+
+
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogoComponent);
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){
+        this.delete(id);
+      }else{
+        console.log("Diálogo respondió no eliminar");
+      }
+    });
+  }
+
+  private delete(id: number) {
+    this.donacionService.delete(id).subscribe(()=>{
+      this.loadLista()
     });
   }
 }

@@ -1,0 +1,53 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="idCuentaBanc">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idCuentaBanc}} </td>
+    </ng-container>
+
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="nombreBanco">
+      <th mat-header-cell *matHeaderCellDef> Nombre Banco </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreBanco}} </td>
+    </ng-container>
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="numneroCuenta">
+      <th mat-header-cell *matHeaderCellDef> No. de cuenta </th>
+      <td mat-cell *matCellDef="let element"> {{element.numneroCuenta}} </td>
+    </ng-container>
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="cci">
+      <th mat-header-cell *matHeaderCellDef> CCI </th>
+      <td mat-cell *matCellDef="let element"> {{element.cci}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary"
+                [routerLink]="['/dashboard/nuevocuentabancaria-edit',element.idCuentaBanc]">
+          <span class="material-icons">update</span>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn"
+                (click)="openDialog(element.idCuentaBanc)"><span class="material-icons">delete_sweep</span></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+

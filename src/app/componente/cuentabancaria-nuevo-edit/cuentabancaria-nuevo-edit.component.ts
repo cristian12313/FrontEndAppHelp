@@ -1,12 +1,22 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { CuentabancariaService } from '../../services/cuentabancaria.service';
-import { Cuentabancaria } from '../../model/cuentabancaria';
 import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
+import {MatFormField, MatHint, MatLabel} from '@angular/material/form-field';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerModule,
+  MatDatepickerToggle
+} from '@angular/material/datepicker';
+import {MatInput, MatInputModule} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {DepartamentoService} from '../../services/departamento.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Departamento} from '../../model/departamento';
+import {CuentabancariaService} from '../../services/cuentabancaria.service';
+import {Cuentabancaria} from '../../model/cuentabancaria';
 
 @Component({
   selector: 'app-cuentabancaria-nuevo-edit',
@@ -14,13 +24,18 @@ import {ActivatedRoute, Router} from '@angular/router';
   imports: [
     MatCard,
     MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    MatInput,
-    MatButton,
+    MatCardContent, MatLabel, MatHint,
     ReactiveFormsModule,
-    MatLabel
-
+    MatFormField,
+    MatDatepickerInput,
+    MatInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatButton,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule
   ],
   templateUrl: './cuentabancaria-nuevo-edit.component.html',
   styleUrl: './cuentabancaria-nuevo-edit.component.css'
@@ -28,33 +43,31 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class CuentabancariaNuevoEditComponent implements OnInit{
   cuentabancariaForm: FormGroup;
   fb: FormBuilder = inject(FormBuilder);
-  cuentabancariaService: CuentabancariaService=inject(CuentabancariaService);
+  cuentabancariaService: CuentabancariaService = inject(CuentabancariaService);
   router: Router = inject(Router);
-  id: number=0;
+  id: number =0;
   edicion: boolean = false;
   route: ActivatedRoute = inject(ActivatedRoute);
-
   constructor() {
     console.log("Carga constructor de Form")
     this.cuentabancariaForm = this.fb.group({
-      idCuentaBanc:[''],
-      nombreBanco:['', Validators.required],
-      numneroCuenta:['', Validators.required],
-      cci:['', Validators.required]
+      idCuentaBanc: [''],
+      nombreBanco: ['', Validators.required],
+      numneroCuenta: ['', Validators.required],
+      cci: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {
-    // Inicialización del formulario sin validaciones para evitar errores
-    console.log("Carga constructor de Form")
+  ngOnInit() {
+    console.log("Carga ngOnInit de Form")
     this.route.params.subscribe((data) => {
       console.log(data);
       this.id = data['id'];
-      this.edicion = data['id']!=null;
+      this.edicion = data['id'] != null;
       this.cargarForm();
     });
   }
-  private cargarForm(): void {
+  private cargarForm() {
     if(this.edicion){
       this.cuentabancariaService.listID(this.id).subscribe((data:Cuentabancaria):void => {
         console.log(data);
@@ -66,25 +79,30 @@ export class CuentabancariaNuevoEditComponent implements OnInit{
       });
     }
   }
-
   onSubmit(): void {
-    // Envío del formulario sin validaciones
-    if (this.cuentabancariaForm.valid) {
-      const nuevaCuentaBancaria: Cuentabancaria = this.cuentabancariaForm.value;
-
-      this.cuentabancariaService.insert(nuevaCuentaBancaria).subscribe({
-        next: (response) => {
-          console.log('Cuenta bancaria registrada:', response);
-          this.cuentabancariaForm.reset();
-        },
-        error: (error) => {
-          console.error('Error al registrar la cuenta bancaria:', error);
-        }
-      });
+    if(this.cuentabancariaForm.valid){
+      const cuentabancaria:Cuentabancaria = new Cuentabancaria();
+      cuentabancaria.idCuentaBanc = this.id;
+      cuentabancaria.nombreBanco = this.cuentabancariaForm.value.nombreBanco;
+      cuentabancaria.numneroCuenta = this.cuentabancariaForm.value.numneroCuenta;
+      cuentabancaria.cci = this.cuentabancariaForm.value.cci;
+      if(!this.edicion){
+        this.cuentabancariaService.insert(cuentabancaria).subscribe((data:Object): void => {
+          this.cuentabancariaService.list().subscribe(data => {
+            this.cuentabancariaService.setList(data);
+          })
+        })
+      }else{
+        this.cuentabancariaService.update(cuentabancaria).subscribe((data:Object): void => {
+          this.cuentabancariaService.list().subscribe(data => {
+            this.cuentabancariaService.setList(data);
+          })
+        })
+      }
+      this.router.navigate(['/dashboard/cuentabancarias']);
+    }else{
+      console.log("Formulario no valido");
+      alert("Formulario no valido");
     }
-  }
-
-  get f() {
-    return this.cuentabancariaForm.controls;
   }
 }

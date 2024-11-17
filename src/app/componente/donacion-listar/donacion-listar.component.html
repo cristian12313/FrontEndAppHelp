@@ -37,7 +37,41 @@
       <td mat-cell *matCellDef="let element"> {{element.detalle}} </td>
     </ng-container>
 
+    <!-- Campaña Column -->
+    <ng-container matColumnDef="campania">
+      <th mat-header-cell *matHeaderCellDef> Campaña </th>
+      <td mat-cell *matCellDef="let element"> {{element.campania.nombre}} </td>
+    </ng-container>
 
+    <!-- Tipo Donacion Column -->
+    <ng-container matColumnDef="tipodonacion">
+      <th mat-header-cell *matHeaderCellDef> Tipo Donacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.tipodonacion.nombre}} </td>
+    </ng-container>
+
+    <!-- Estado Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let element"> {{element.estado.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary"
+                [routerLink]="['/dashboard/nuevodonacion-edit',element.idDonacion]">
+          <span class="material-icons">update</span>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn"
+                (click)="openDialog(element.idDonacion)"><span class="material-icons">delete_sweep</span></button>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

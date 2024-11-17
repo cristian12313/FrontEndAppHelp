@@ -3,14 +3,16 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environment/environment';
 import {Departamento} from '../model/departamento';
 import {Observable, Subject} from 'rxjs';
-import {Distrito} from '../model/distrito';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartamentoService {
-  private url = environment.apiUrl
+  private url = environment.apiUrl+"/api";
+  //para el uso de HttClient se debe registrar en app.config.ts cómo provider a
+  // provideHttpClient()
+
   private http: HttpClient = inject(HttpClient);
   private listaCambio: Subject<Departamento[]> = new Subject<Departamento[]>();
 
@@ -18,12 +20,11 @@ export class DepartamentoService {
   }
 
   list(): Observable<any> {
-    return this.http.get(this.url + "/departamentos");
+    return this.http.get<Departamento[]>(this.url + "/departamentos");
   }
 
   listID(id: number): Observable<any> {
-    console.log(this.url + "/departamento/" + id);
-    return this.http.get<Distrito[]>(this.url + "/departamento/" + id);
+    return this.http.get<Departamento[]>(this.url + "/departamento/" + id);
   }
 
   insert(departamento: Departamento): Observable<any> {

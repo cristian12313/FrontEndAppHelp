@@ -4,24 +4,20 @@
     <form [formGroup]="cuentabancariaForm" class="form-container">
 
       <mat-form-field appearance="fill">
-        <mat-label>Nombre Banco</mat-label>
-        <input matInput formControlName="nombreBanco" placeholder="Ingrese el nombre de banco" />
+        <mat-label>Nombre del banco</mat-label>
+        <input matInput formControlName="nombreBanco" placeholder="Ingrese el nombre del banco" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del numero de cuenta</mat-label>
+        <input matInput formControlName="numneroCuenta" placeholder="Ingrese el nombre del numero" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del cci</mat-label>
+        <input matInput formControlName="cci" placeholder="Ingrese el nombre del cci" />
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Numero Cuenta</mat-label>
-        <input matInput formControlName="numneroCuenta" placeholder="Ingrese el numero de cuenta" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>CCI</mat-label>
-        <input matInput formControlName="cci" placeholder="Ingrese el CCI" />
-      </mat-form-field>
 
       <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
     </form>
   </mat-card-content>
 </mat-card>
-
-
-

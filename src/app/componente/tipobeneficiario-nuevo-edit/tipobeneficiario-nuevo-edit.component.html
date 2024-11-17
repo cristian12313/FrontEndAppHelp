@@ -2,14 +2,11 @@
   <mat-card-title>Formulario de Tipo Beneficiario</mat-card-title>
   <mat-card-content>
     <form [formGroup]="tipobeneficiarioForm" class="form-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Tipo Beneficiario:</mat-label>
-        <mat-select formControlName="nombre">
-          <mat-option [value]="'Personal'">Personal</mat-option>
-          <mat-option [value]="'Comunidad'">Comunidad</mat-option>
-        </mat-select>
-      </mat-form-field>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del Beneficiario</mat-label>
+        <input matInput formControlName="nombre" placeholder="Ingrese el nombre del beneficiario" />
+      </mat-form-field>
 
       <button mat-raised-button color="primary" (click)="onSubmit()">Registrar</button>
     </form>
