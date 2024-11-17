@@ -20,6 +20,8 @@ import {CampaniaService} from '../../services/campania.service';
 import {NgForOf} from "@angular/common";
 import {Tipodonacion} from '../../model/tipodonacion';
 import {TipodonacionService} from '../../services/tipodonacion.service';
+import {Estado} from '../../model/estados';
+import {EstadoService} from '../../services/estado.service';
 
 @Component({
   selector: 'app-donacion-nuevo-edit',
@@ -65,6 +67,13 @@ export class DonacionNuevoEditComponent implements OnInit{
   lista1: Tipodonacion[] = [];
   tipodonacion: Tipodonacion = new Tipodonacion();
 
+  //ESTADO
+  estadoService: EstadoService = inject(EstadoService);
+  public idEstadoSeleccionado: number = 0;
+  lista2: Estado[] = [];
+  estado: Estado = new Estado();
+
+
   constructor() {
     console.log("Carga constructor de Form")
     this.donacionForm = this.fb.group({
@@ -77,6 +86,7 @@ export class DonacionNuevoEditComponent implements OnInit{
       //
       campania: ['', [Validators.required]],
       tipodonacion: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
     });
   }
 
@@ -96,8 +106,14 @@ export class DonacionNuevoEditComponent implements OnInit{
       next: (data) => this.lista = data,
       error: (err) => console.error("Error en consulta", err)
     })
+    //
     this.tipodonacionService.list().subscribe({
       next: (data) => this.lista1 = data,
+      error: (err) => console.error("Error en consulta", err)
+    })
+    //
+    this.estadoService.list().subscribe({
+      next: (data) => this.lista2 = data,
       error: (err) => console.error("Error en consulta", err)
     })
   }
@@ -113,7 +129,8 @@ export class DonacionNuevoEditComponent implements OnInit{
           detalle:data.detalle,
           //
           campania:data.campania,
-          tipodonacion:data.tipodonacion
+          tipodonacion:data.tipodonacion,
+          estado:data.estado
         });
       });
     }
@@ -134,6 +151,9 @@ export class DonacionNuevoEditComponent implements OnInit{
       //
       donacion.tipodonacion = this.tipodonacion;
       donacion.tipodonacion.idTipodonacion = this.donacionForm.value.tipodonacion;
+      //
+      donacion.estado = this.estado;
+      donacion.estado.idEstado = this.donacionForm.value.estado;
       if(!this.edicion){
         this.donacionService.insert(donacion).subscribe((data:Object): void => {
           this.donacionService.list().subscribe(data => {

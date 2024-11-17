@@ -1,0 +1,96 @@
+/* Estilos generales del body */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Contenedor principal */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Espaciado entre secciones */
+}
+
+/* Sección del mapa */
+.map-section {
+  background-color: #ffd600; /* Amarillo */
+  width: 1000%;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Espaciado entre botones */
+}
+
+/* Botones circulares */
+.button {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button.green {
+  background-color: #008000; /* Verde */
+}
+
+.button.orange {
+  background-color: #ff5722; /* Naranja */
+}
+
+/* Galería de imágenes */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  padding: 20px;
+  width: 2000%; /* Ajustar ancho total */
+  max-width: 1500px; /* Limitar ancho en pantallas grandes */
+  box-sizing: border-box;
+}
+
+/* Cada elemento de la galería */
+.gallery-item {
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Imágenes asignadas por CSS */
+.gallery-item:nth-child(1) {
+  background-image: url('../../img/Huanuco.png');
+}
+
+.gallery-item:nth-child(2) {
+  background-image: url('../../img/Lima.png');
+}
+
+.gallery-item:nth-child(3) {
+  background-image: url('../../img/Ucayali.png');
+}
+
+.gallery-item:nth-child(4) {
+  background-image: url('../../img/Ica.jpg');
+}
+
+.gallery-item:nth-child(5) {
+  background-image: url('../../img/Desastre1.jpg');
+}
+

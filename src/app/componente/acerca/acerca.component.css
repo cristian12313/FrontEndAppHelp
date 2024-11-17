@@ -1,0 +1,47 @@
+.nostros-sidevar {
+  background-color: white; /* Fondo blanco */
+  display: flex; /* Usamos flexbox para organizar los elementos */
+  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: flex-start; /* Alinea el contenido a la izquierda */
+  padding: 20px;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden; /* Evita que el texto se desborde de la imagen */
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column; /* Organiza el contenido verticalmente */
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: flex-start; /* Alinea el texto a la izquierda */
+  color: black; /* Color del texto */
+  max-width: 50%; /* Limita el ancho del contenedor de texto */
+  z-index: 1; /* Asegura que el texto esté por encima de la imagen */
+  font-family: Arial, sans-serif; /* Fuente Sans Serif */
+}
+
+
+.nostros-sidevar h1 {
+  font-size: 2.5rem; /* Tamaño grande para el encabezado */
+  margin-bottom: 15px; /* Espacio debajo del título */
+}
+
+.nostros-sidevar p {
+  font-size: 1.2rem; /* Tamaño para el párrafo */
+}
+
+.nostros-sidevar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%; /* La imagen ocupa la mitad del contenedor */
+  height: 80%;
+  background-image: url('../../img/nosotros.jpg');
+  background-size: cover; /* La imagen cubre todo el área disponible */
+  background-position: center; /* Centra la imagen */
+  border-radius: 0 8px 8px 0; /* Bordes redondeados en el lado derecho */
+  z-index: 0; /* La imagen está por debajo del texto */
+}
+
