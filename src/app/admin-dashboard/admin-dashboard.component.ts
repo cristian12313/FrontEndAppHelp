@@ -148,6 +148,11 @@ export class AdminDashboardComponent implements OnInit{
     });
   }
 
+  //Metodo de dashboard
+  goToDashboard(): void {
+    this.router.navigate(['/dashboard']); // Cambia '/dashboard' por la ruta que hayas definido para el componente dashboard
+  }
+
   //Método de logout
   logout(): void {
     this.authService.logout(); // Llama al servicio de logout

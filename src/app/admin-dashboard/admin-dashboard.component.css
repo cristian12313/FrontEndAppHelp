@@ -1,3 +1,15 @@
+.mat-sidenav {
+  width: 300px;  /* Cambia este valor para ajustar el ancho */
+}
+.app-sidenav-container {
+  width: 300px;  /* Ajusta el ancho del contenedor del sidenav */
+}
+mat-sidenav-container {
+  height: 100%;
+  margin: 0;
+}
+
+
 
 .botones-container {
   display: flex;

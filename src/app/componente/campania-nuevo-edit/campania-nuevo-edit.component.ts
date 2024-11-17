@@ -67,6 +67,12 @@ export class CampaniaNuevoEditComponent implements OnInit{
   lista11: Tipobeneficiario[] = [];
   tipobeneficiario: Tipobeneficiario = new Tipobeneficiario();
 
+  //TIPO Donacion
+  tipodonacionService: TipodonacionService = inject(TipodonacionService);
+  public idTipoDonacionSeleccionado: number = 0;
+  lista12: Tipodonacion[] = [];
+  tipodonacion: Tipodonacion = new Tipodonacion();
+
   constructor() {
     console.log("Carga constructor de Form")
     this.campaniaForm = this.fb.group({
@@ -78,6 +84,8 @@ export class CampaniaNuevoEditComponent implements OnInit{
       //
       cuentabancaria: ['', [Validators.required]],
       tipobeneficiario: ['', [Validators.required]],
+      tipodonacion: ['', [Validators.required]],
+
     });
   }
 
@@ -102,6 +110,11 @@ export class CampaniaNuevoEditComponent implements OnInit{
       next: (data) => this.lista11 = data,
       error: (err) => console.error("Error en consulta", err)
     })
+    //
+    this.tipodonacionService.list().subscribe({
+      next: (data) => this.lista12 = data,
+      error: (err) => console.error("Error en consulta", err)
+    })
   }
   private cargarForm() {
     if(this.edicion){
@@ -114,7 +127,8 @@ export class CampaniaNuevoEditComponent implements OnInit{
           ubicacion:data.ubicacion,
           //
           cuentabancaria:data.cuentabancaria,
-          tipobeneficiario:data.tipobeneficiario
+          tipobeneficiario:data.tipobeneficiario,
+          tipodonacion:data.tipodonacion
         });
       });
     }
@@ -133,6 +147,9 @@ export class CampaniaNuevoEditComponent implements OnInit{
       //
       campania.tipobeneficiario = this.tipobeneficiario;
       campania.tipobeneficiario.idTipobene = this.campaniaForm.value.tipobeneficiario;
+      //
+      campania.tipodonacion = this.tipodonacion;
+      campania.tipodonacion.idTipodonacion = this.campaniaForm.value.tipodonacion;
       if(!this.edicion){
         this.campaniaService.insert(campania).subscribe((data:Object): void => {
           this.campaniaService.list().subscribe(data => {

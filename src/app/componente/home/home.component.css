@@ -17,40 +17,24 @@ body {
 .map-section {
   background-color: #ffd600; /* Amarillo */
   width: 1000%;
-  padding: 60px 0;
+  padding: 20px 0;
   display: flex;
   justify-content: center;
   position: relative;
 }
 
-.map-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px; /* Espaciado entre botones */
+
+/* Imagen central como fondo */
+.central-image {
+  width: 480px; /* Ajusta el tamaño del contenedor según tus necesidades */
+  height: 480px;
+  background-image: url('../../img/mapa.png'); /* Ruta a la imagen */
+  background-size: contain; /* Ajusta la imagen completa dentro del contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center; /* Centra la imagen dentro del contenedor */
+  border-radius: 50%; /* Opcional: redondea los bordes para mantener forma circular */
 }
 
-/* Botones circulares */
-.button {
-  width: 120px;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-weight: bold;
-  color: white;
-  margin: 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.button.green {
-  background-color: #008000; /* Verde */
-}
-
-.button.orange {
-  background-color: #ff5722; /* Naranja */
-}
 
 /* Galería de imágenes */
 .image-gallery {

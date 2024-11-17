@@ -44,7 +44,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class CampaniaListarComponent implements OnInit, AfterViewInit{
   lista:Campania[]=[];
-  displayedColumns: string[]=['idCampania','culminado','descripcion','nombre','ubicacion','cuentabancaria','tipobeneficiario','accion01', 'accion02'];
+  displayedColumns: string[]=['idCampania','culminado','descripcion','nombre','ubicacion','cuentabancaria','tipobeneficiario','tipodonacion','accion01', 'accion02'];
   dataSource:MatTableDataSource<Campania>=new MatTableDataSource<Campania>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
