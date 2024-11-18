@@ -33,7 +33,7 @@ body{
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: none;
+  background-color: white;
 }
 
 .eco-recaudacion-section {
@@ -89,8 +89,6 @@ button {
   background-color: black; /* Cambia el color por el que prefieras */
   color: white; /* Cambia el color del texto si es necesario */
 }
-<<<<<<< Updated upstream
-=======
 .material-icons{
   color: #FF9090;
 }
@@ -126,8 +124,6 @@ button {
   justify-content: center;
 
 }
->>>>>>> Stashed changes
-
 .app-container {
   height: 90%;
   margin: 0;
