@@ -86,9 +86,47 @@ button {
   flex: 1 1 auto;
 }
 .mat-toolbar {
-  background-color: #3f51b5; /* Cambia el color por el que prefieras */
+  background-color: black; /* Cambia el color por el que prefieras */
   color: white; /* Cambia el color del texto si es necesario */
 }
+<<<<<<< Updated upstream
+=======
+.material-icons{
+  color: #FF9090;
+}
+
+.campanas-sidebar {
+  background-image: url('../img/mapa1.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 580px;
+  background-color: #F5F5F5;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  margin-top: 0;
+  border-radius: 8px;
+}
+
+
+.eco-recaudacion-section {
+  display: flex;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.app-sidenav-content {
+  display: flex;
+  width: 100%;   /* Asegura que el contenedor ocupe todo el espacio disponible */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+>>>>>>> Stashed changes
 
 .app-container {
   height: 90%;

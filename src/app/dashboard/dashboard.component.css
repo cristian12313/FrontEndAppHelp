@@ -3,11 +3,11 @@
   flex: 1 1 auto;
 }
 .mat-toolbar {
-  background-color: #3f51b5; /* Cambia el color por el que prefieras */
+  background-color: black; /* Cambia el color por el que prefieras */
   color: white; /* Cambia el color del texto si es necesario */
 }
 .material-icons{
-  color: coral;
+  color: #FF9090;
 }
 
 .app-container {
