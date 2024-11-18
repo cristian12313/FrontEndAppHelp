@@ -1,4 +1,7 @@
 <mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
   <span>APP HELP</span>
   <span class="toolbar-item-spacer"></span>
   <!-- Botón para regresar al dashboard -->
@@ -30,99 +33,199 @@
 </mat-toolbar>
 
 <body>
+
 <div class="eco-recaudacion-section">
+
   <div class="campanas-sidebar">
     <h2>HISTORIAL</h2>
   </div>
-
   <div class="contenido-central">
     <div class="header-campania">
       <h2 class="titulo-central">CONSULTAS</h2>
     </div>
-  <div class="formulario-container">
-    <div class="formulario-inline">
-      <mat-form-field appearance="fill" class="campo-inline">
-        <mat-label>Estado</mat-label>
-        <input matInput [(ngModel)]="nombreEstado" />
-      </mat-form-field>
-      <button mat-raised-button color="accent" (click)="getDonacionesPorEstado(nombreEstado)">Donaciones por Estado</button>
+    <div class="formulario-container">
+      <div class="formulario-inline">
+        <mat-form-field appearance="fill" class="campo-inline">
+          <mat-label>Estado</mat-label>
+          <input matInput [(ngModel)]="nombreEstado" />
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="getDonacionesPorEstado(nombreEstado)">Donaciones por Estado</button>
+      </div>
     </div>
-  </div>
-  <div class="formulario-container">
-    <div class="formulario-inline">
-      <mat-form-field appearance="fill" class="campo-inline">
-        <mat-label>Nombre de Campaña</mat-label>
-        <input matInput [(ngModel)]="nombreCampania" />
-      </mat-form-field>
-      <button mat-raised-button color="accent" (click)="getDonacionesPorCampania(nombreCampania)">Buscar Donaciones</button>
+    <div class="formulario-container">
+      <div class="formulario-inline">
+        <mat-form-field appearance="fill" class="campo-inline">
+          <mat-label>Nombre de Campaña</mat-label>
+          <input matInput [(ngModel)]="nombreCampania" />
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="getDonacionesPorCampania(nombreCampania)">Buscar Donaciones</button>
+      </div>
     </div>
-  </div>
-  <div class="botones-consulta">
-    <button mat-raised-button color="primary" (click)="getEcoRecaudacionData()">Recaudación Económica</button>
-  </div>
-  <div class="botones-consulta">
-    <button mat-raised-button color="primary" (click)="getDonacionesPorIntervalo('2023-01-01', '2025-01-01')">Donaciones por Intervalo</button>
-  </div>
+    <div class="botones-consulta">
+      <button mat-raised-button color="primary" (click)="getEcoRecaudacionData()">Recaudación Económica</button>
+    </div>
+    <div class="botones-consulta">
+      <button mat-raised-button color="primary" (click)="getDonacionesPorIntervalo('2023-01-01', '2025-01-01')">Donaciones por Intervalo</button>
+    </div>
 
-  <!-- Tabla de Recaudación Económica -->
-  <table *ngIf="mostrarRecaudacionEconomica" mat-table [dataSource]="ecoRecaudacionData" class="mat-elevation-z8">
-    <ng-container matColumnDef="cant">
-      <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
-      <td mat-cell *matCellDef="let element"> {{element.cant}} </td>
-    </ng-container>
-    <ng-container matColumnDef="suma">
-      <th mat-header-cell *matHeaderCellDef> Monto Recaudado </th>
-      <td mat-cell *matCellDef="let element"> {{element.suma}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['cant', 'suma']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['cant', 'suma'];"></tr>
-  </table>
-  <!-- Tabla de Donaciones por Campaña -->
-  <table *ngIf="mostrarDonacionesPorCampania" mat-table [dataSource]="donacionesPorCampania" class="mat-elevation-z8">
-    <ng-container matColumnDef="cantDonaciones">
-      <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
-      <td mat-cell *matCellDef="let element"> {{element.cantDonaciones}} </td>
-    </ng-container>
-    <ng-container matColumnDef="tipoDonacion">
-      <th mat-header-cell *matHeaderCellDef> Tipo de Donación </th>
-      <td mat-cell *matCellDef="let element"> {{element.tipoDonacion}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['cantDonaciones', 'tipoDonacion']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['cantDonaciones', 'tipoDonacion'];"></tr>
-  </table>
-  <!-- Tabla para mostrar los resultados -->
-  <table *ngIf="mostrarDonacionesPorEstado" mat-table [dataSource]="donacionesPorEstado" class="mat-elevation-z8">
-    <ng-container matColumnDef="nombreCampania">
-      <th mat-header-cell *matHeaderCellDef> Nombre de Campaña </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombreCampania}} </td>
-    </ng-container>
-    <ng-container matColumnDef="nombreTipoDonacion">
-      <th mat-header-cell *matHeaderCellDef> Tipo de Donación </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombreTipoDonacion}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['nombreCampania', 'nombreTipoDonacion']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['nombreCampania', 'nombreTipoDonacion'];"></tr>
-  </table>
-  <!-- Tabla para mostrar los resultados -->
-  <table *ngIf="mostrarDonacionesPorIntervalo" mat-table [dataSource]="donacionesPorIntervalo" class="mat-elevation-z8">
-    <ng-container matColumnDef="nombreCampania">
-      <th mat-header-cell *matHeaderCellDef> Campaña </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombreCampania}} </td>
-    </ng-container>
-    <ng-container matColumnDef="nombreEstado">
-      <th mat-header-cell *matHeaderCellDef> Estado </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombreEstado}} </td>
-    </ng-container>
-    <ng-container matColumnDef="fechaInicio">
-      <th mat-header-cell *matHeaderCellDef> Fecha de Inicio </th>
-      <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['nombreCampania', 'nombreEstado', 'fechaInicio']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['nombreCampania', 'nombreEstado', 'fechaInicio'];"></tr>
-  </table>
+    <!-- Tabla de Recaudación Económica -->
+    <table *ngIf="mostrarRecaudacionEconomica" mat-table [dataSource]="ecoRecaudacionData" class="mat-elevation-z8">
+      <ng-container matColumnDef="cant">
+        <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
+        <td mat-cell *matCellDef="let element"> {{element.cant}} </td>
+      </ng-container>
+      <ng-container matColumnDef="suma">
+        <th mat-header-cell *matHeaderCellDef> Monto Recaudado </th>
+        <td mat-cell *matCellDef="let element"> {{element.suma}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['cant', 'suma']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['cant', 'suma'];"></tr>
+    </table>
+    <!-- Tabla de Donaciones por Campaña -->
+    <table *ngIf="mostrarDonacionesPorCampania" mat-table [dataSource]="donacionesPorCampania" class="mat-elevation-z8">
+      <ng-container matColumnDef="cantDonaciones">
+        <th mat-header-cell *matHeaderCellDef> Cantidad de Donaciones </th>
+        <td mat-cell *matCellDef="let element"> {{element.cantDonaciones}} </td>
+      </ng-container>
+      <ng-container matColumnDef="tipoDonacion">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Donación </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipoDonacion}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['cantDonaciones', 'tipoDonacion']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['cantDonaciones', 'tipoDonacion'];"></tr>
+    </table>
+    <!-- Tabla para mostrar los resultados -->
+    <table *ngIf="mostrarDonacionesPorEstado" mat-table [dataSource]="donacionesPorEstado" class="mat-elevation-z8">
+      <ng-container matColumnDef="nombreCampania">
+        <th mat-header-cell *matHeaderCellDef> Nombre de Campaña </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombreCampania}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nombreTipoDonacion">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Donación </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombreTipoDonacion}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['nombreCampania', 'nombreTipoDonacion']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombreCampania', 'nombreTipoDonacion'];"></tr>
+    </table>
+    <!-- Tabla para mostrar los resultados -->
+    <table *ngIf="mostrarDonacionesPorIntervalo" mat-table [dataSource]="donacionesPorIntervalo" class="mat-elevation-z8">
+      <ng-container matColumnDef="nombreCampania">
+        <th mat-header-cell *matHeaderCellDef> Campaña </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombreCampania}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nombreEstado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombreEstado}} </td>
+      </ng-container>
+      <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Inicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['nombreCampania', 'nombreEstado', 'fechaInicio']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombreCampania', 'nombreEstado', 'fechaInicio'];"></tr>
+    </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
   </div>
 </div>
+<mat-sidenav-container class="app-container">
+  <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" class="app-sidenav">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/dashboard/home'">
+        <mat-icon>home</mat-icon> Home</a>
+      <a mat-list-item [routerLink]="'/dashboard/acerca'">
+        <mat-icon>info</mat-icon> Acerca</a>
+
+      <!-- Menú desplegable para Campaña -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Campaña</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/campanias'">Ver Campaña</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para Donacion -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Donacion</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/donaciones'">Ver Donación</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para Departamentos -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Departamentos</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/departamentos'">Ver Departamentos</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevodepartamento'">Nuevo Departamento</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para Distrito -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Distritos</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/distritos'">Ver Distritos</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevodistrito'">Nuevo Distrito</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para TipoBeneficiario -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Tipo Beneficiario</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/tipobeneficiarios'">Ver Tipo Beneficiario</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevotipobeneficiario'">Nuevo Tipo Beneficiario</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para Cuentabancario -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Cuenta Bancario</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/cuentabancarias'">Ver Cuenta Bancaria</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevocuentabancaria'">Nuevo Cuenta Bancaria</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para estado -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Estado</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/estados'">Ver Estado</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevoestado'">Nuevo Estado</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para tipo donacion -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Tipo Donacion</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/tipoDonaciones'">Ver Tipo Donacion</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevotipoDonacion'">Nuevo Tipo Donacion</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para tipo usuario -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Tipo Usuario</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/tipousuarios'">Ver Tipo Usuario</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevotipousuario'">Nuevo Tipo Usuario</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- Menú desplegable para usuario -->
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>Usuario</mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/dashboard/usuarios'">Ver Usuario</a>
+          <a mat-list-item [routerLink]="'/dashboard/nuevousuario'">Nuevo Usuario</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet>
+      <div class="app-sidenav-content">
+        <router-outlet></router-outlet>
+      </div>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 </body>
+
 
