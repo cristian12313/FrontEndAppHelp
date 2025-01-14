@@ -1,27 +1,21 @@
-# FrontEndAppHelp
+# FrontAppHelp  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+**FrontAppHelp** es una interfaz de usuario diseñada para interactuar con el backend de **BackAppHelp**, proporcionando una experiencia intuitiva y eficiente para la gestión de usuarios y tickets de soporte técnico. Este proyecto está construido con **Angular** y sigue principios modernos de diseño responsivo.  
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Características principales  
+- **Gestión de usuarios:** Visualización, edición y eliminación de perfiles de usuario.  
+- **Gestión de tickets:** Creación, seguimiento y eliminación.  
+- **Autenticación:** Inicio de sesión seguro con JWT.  
+- **UI responsiva:** Compatible con dispositivos móviles, tabletas y escritorio.  
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠️ Tecnologías utilizadas  
+- **Framework principal:** Angular 16  
+- **Librerías de UI:** Angular Material  
+- **Estilos:** SCSS  
+- **Comunicación API:** HTTP Client  
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
